@@ -21,7 +21,7 @@ class Event{
 
 		virtual void onEvent()=0;
 	private:
-		TYPE _type = 0;
+		TYPE _type = sys::DEFAULT;
 		
 };
 
