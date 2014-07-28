@@ -1,3 +1,5 @@
+
+
 TOPDIR =  $(shell pwd)
 
 
@@ -14,6 +16,7 @@ TESTOBJS = \
 	 logger.o\
 
 
+
 #外部的obj
 OBJS = ../auto_mutex.o ../clientsocket.o ../lock.o \
 	../messagequeue.o  ../event_driver.o \
@@ -23,7 +26,8 @@ OBJS = ../auto_mutex.o ../clientsocket.o ../lock.o \
 	../refcount.o ../socketstream.o ../connection.o \
 	../connectionmanager.o   ../logger.o  \
 	../listensocketevent.o ../tcpsocketevent.o \
-	../neteventdriver.o\
+	../neteventdriver.o ../commond.o ../netevent.o \
+
 
 #本目录下的.cpp
 TESTSRC=${TESTOBJS:%.o=%.cpp}

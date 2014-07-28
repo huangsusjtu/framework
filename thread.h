@@ -4,18 +4,29 @@
 
 #include "runnable.h"
 
+namespace sys{
+
 class Thread : public Runnable{
 	public:
 		Thread();
 		virtual ~Thread(){};
 		
 
-	static void* thread_func(void *this_);
+		pthread_t getThreadHandle(){
+			return mTid;
+		}
+		
+		
+		static void* thread_func(void *this_);
 		void start();
 		void stop();
 		void join();
-		pthread_t getThreadID();
 
+		bool needRun(){
+			return mStop==false;		
+		}
+	protected:
+		virtual void run()=0;
 
 	private:
 		Thread(const Thread&);
@@ -25,4 +36,7 @@ class Thread : public Runnable{
 		pthread_t mTid;
 
 };
+
+}
+
 #endif

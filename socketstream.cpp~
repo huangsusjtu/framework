@@ -47,7 +47,7 @@ void SocketStream::readToPacket(PacketQueue *queue)
         			 n |= _buffer_in[2];
        				 n <<= 8;
        				 n |= _buffer_in[3];
-				_cur_in->_len = n;
+				_cur_in->_size = n;
 				_cur_in->allocMem(n);				
 			}		
 		}
@@ -65,7 +65,7 @@ void SocketStream::readToPacket(PacketQueue *queue)
 			_pos_in = 0;	
 		}
 			
-	}while(1);
+	}while(1)
 }
 
 /**

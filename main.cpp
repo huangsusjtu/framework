@@ -9,7 +9,7 @@
 #include "status.h"
 #include <stdio.h>
 
-class mythread : public Thread
+class mythread : public sys::Thread
 {
 	void run()
 	{

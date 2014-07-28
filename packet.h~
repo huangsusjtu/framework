@@ -19,6 +19,7 @@ namespace net{
 	{
 		friend class SocketStream;
 		public:
+			Packet();
 			Packet(char* addr=NULL, size_t size=0);
 			Packet(const MemBuffer *T);
 			virtual ~Packet();

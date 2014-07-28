@@ -1,5 +1,7 @@
 #include "thread.h"
 
+namespace sys{
+
 Thread::Thread():mStop(true)
 {
 	
@@ -19,7 +21,7 @@ void Thread::join()
 void Thread::stop()
 {
 	mStop = true;
-	pthread_exit(0);
+	//pthread_exit(0);
 }
 
 void* Thread::Thread::thread_func(void *this_)
@@ -27,4 +29,4 @@ void* Thread::Thread::thread_func(void *this_)
 	if(this_)
 		( static_cast<Thread*>(this_))->run();
 }
-
+}

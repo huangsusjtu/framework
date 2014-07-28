@@ -87,6 +87,8 @@ bool Logger::appendLine(const char* level,const char *line)
 			return false;
 		}
 	}
+
+	
 	Lock::unlock();
 	return true;
 }

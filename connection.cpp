@@ -2,8 +2,7 @@
 namespace net{
 
 Connection::Connection(Socket* sock, sockaddr *addr, size_t addrlen) :
-	_socket(sock),_addr(*addr),_addr_len(addrlen),
-	_out(NULL),_in(NULL),_own(NULL),_cur_in(NULL),_cur_out(NULL)
+	_socket(sock),_addr(*addr),_addr_len(addrlen)
 {
 	assert(sock!=NULL && addr!=NULL);
 	_fd = sock->getSocketHandle();
@@ -16,63 +15,53 @@ void Connection::setAddress(sockaddr *addr, size_t addrlen)
 	
 }
 
+//初始化数据流
 void Connection::prepare()
 {
+	_in = new PacketQueue();
+	_out = new PacketQueue();
 	_streamer = new SocketStream(_socket);
-	_own = new PacketQueue();
 }
+
 
 Connection::~Connection()
 {
-	if(_socket)delete _socket;
-	if(_cur_in)delete _cur_in;
 	if(_streamer)delete _streamer;
-	if(_own)delete _own;
+	if(_in)delete _in;		
+	if(_out)delete _out;
+	if(_socket)delete _socket;
 }
 
-void Connection::setPacketQueue(PacketQueue *in, PacketQueue *out)
-{
-	_in = in;
-	_out = out;
-}
 
-/**读取数据包并放到队列
- */
-bool Connection::readPacket()
+/**
+* 读取数据包并放到队列
+* 将缓冲区的数据全部读完
+*/
+void Connection::readPacket()
 {
-	if(!_cur_in || !_streamer)return false;
-	if(!_streamer->readToPacket(_cur_in))
-		return false;
-	if(_in)
-		postPacketToQueue();
-	else
-	{
-		_own->addBack(_cur_in);
-	}
-	_cur_in = NULL;
-	return true;
+	if(!_streamer || !_in)return ;
+	_streamer->readToPacket(_in);
 }
 
 /**
  * 从队列取包并且发送
+ * @return false: 数据没有写完，内核缓冲区已满。 true: 数据写完
  */
-bool Connection::writePacket()
+void Connection::writePacket()
 {
-	if( !getPacketFromQueue() || !_streamer)
-		return false;
-	return _streamer->writeFromPacket(_cur_out);
+	if( !_streamer || !_out)
+		return ;
+	if( false == _streamer->writeFromPacket(_out) )
+	{
+		//数据没写完，缓冲区已满。
+		setWriteable(false);
+		return ;
+	}
+	return ;
 }
 
-void Connection::postPacketToQueue()
-{
-	_in->addBack(_cur_in);
-}
 
-bool Connection::getPacketFromQueue()
-{
-	_cur_out = _out->getFront();
-	return _cur_out!=NULL;
-}
+
 
 }
 

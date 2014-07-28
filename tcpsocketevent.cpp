@@ -1,39 +1,59 @@
+#include "commond.h"
+#include "netevent.h"
 #include "tcpsocketevent.h"
-
+#include "logger.h"
 #include <cassert>
 
 namespace net{
 
+using sys::Logger;
+using sys::Commond;
 /**
  *
  */
-TcpSocketEvent::TcpSocketEvent(int fd, uint32_t eventtype )
-	:EventDescripter(fd, eventtype)
-{}
+TcpSocketEvent::TcpSocketEvent(int fd, uint32_t eventtype , Connection *con)
+	:EventDescripter(fd, eventtype), _con(con)
+{
+	assert(con!=NULL);
+}
 
 TcpSocketEvent::~TcpSocketEvent()
 {}
 
+
+/**
+* 当tcp套接字有消息时，需要做的处理例程
+*/
 void TcpSocketEvent::eventHandler(struct epoll_event &ev)
 {
 	EventDescripter *desc = (EventDescripter*)ev.data.ptr;	
 	assert(desc!=NULL);
+	if(_con==NULL){
+		sys::Logger::w("A tcpsocket event occur on null connection!");
+		return ;
+	}
 	if(ev.events & EPOLLIN)
 	{
 		//创建一个读IO事件，并加入读事件队列
-		// . . . .	
+		// . . . .
+		NetReadCommond *nm = new NetReadCommond(_con);
+		NetReadQueue::instance().addBack(nm);		
+
 	}
 	else if(ev.events & EPOLLOUT)
 	{
-		_writeable = true;
+		//套接字可写，标记下就可以了
+		_con->_writeable = true;
+
 	}
 	else if(ev.events & EPOLLERR)
 	{
-		_err = true;
+		sys::Logger::w("A writeable on null connection!");
+		_con->_err = true;
 	}
 	else if(ev.events & EPOLLRDHUP)
 	{
-		_needclose = true;
+		_con->_needclose = true;
 	}
 	return ;
 }

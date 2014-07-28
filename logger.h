@@ -28,7 +28,9 @@ class LoggerBuffer{
 	public:
 		LoggerBuffer();
 		~LoggerBuffer();
-
+		
+		//预留一个换行符
+		bool hasFreeSpace(size_t need){return need<_size-_pos;}
 		bool append(const char *level,const char* info, size_t size);	
 	private:
 		LoggerBuffer(const LoggerBuffer &T);

@@ -168,31 +168,14 @@ int Socket::setNoDelay(int val)
 int Socket::read(char* buf, int count)
 {
 	if(sock_fd<0)return -1;
-	 
-	int nread, totlen = 0;
-    	while(totlen != count) {
-        	nread = ::read(sock_fd,buf,count-totlen);
-        	if (nread == 0) return totlen;
-        	if (nread == -1) return -1;
-        	totlen += nread;
-        	buf += nread;
-    	}
-    	return totlen;
+        return ::read(sock_fd,buf,count);
+
 }
 
 int Socket::write(const char* buf, int count)
 {
 	if(sock_fd<0)return -1;
-	
-	int nwritten, totlen = 0;
-    	while(totlen != count) {
-        	nwritten = ::write(sock_fd,buf,count-totlen);
-       		if (nwritten == 0) return totlen;
-        	if (nwritten == -1) return -1;
-        	totlen += nwritten;
-        	buf += nwritten;
-    	}
-    	return totlen;
+        return ::write(sock_fd,buf,count);
 }
 
 //get remote

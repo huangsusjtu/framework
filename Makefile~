@@ -6,7 +6,7 @@ LIBS = -lpthread
 CFLAG = -std=c++11  
 
 
-SUBDIRS := ./test
+SUBDIRS := test
 SERVER_NAME = server
 
 

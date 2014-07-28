@@ -19,33 +19,57 @@ class Connection{
 
 		//初始化时，添加的信息		
 		void prepare();
-		void setPacketQueue(PacketQueue *in, PacketQueue *out);
 		void setAddress(sockaddr *addr, size_t addrlen);		
 
 		int getHandle(){return _fd;}
-				
+			
+	
 
-		bool readPacket();
-		bool writePacket();
+		void readPacket();
+		void writePacket();
+
+
+		void setWriteable(bool t){
+			_writeable = t;		
+		}
+		bool getWriteable(){
+			return _writeable;		
+		}
+		void setErr(bool t){
+			_err = t;		
+		}
+		bool getErr(){
+			return _err;		
+		}
+		void setNeedClose(bool t){
+			_needclose = t;		
+		}
+		bool getNeedClose(){
+			return _needclose;		
+		}	
 
 	private:
-		void postPacketToQueue();
-		bool getPacketFromQueue();
+	
 
 	private:
 		int _fd;
 		//int _port;
 		//int protocol;
+		//远端的IP地址
 		size_t _addr_len;
 		struct sockaddr _addr;
-		class Socket *_socket;	
+		//一条连接对应一个套接字
+		class Socket *_socket;
+		//一条连接对应一个数据流
 		class SocketStream *_streamer;				
 	
-		class PacketQueue *_out;
-		class PacketQueue *_in;
-		class PacketQueue *_own;
-		class Packet *_cur_in;
-		class Packet *_cur_out;	
+		//数据包队列
+		PacketQueue *_out = NULL;
+		PacketQueue *_in = NULL; 
+	public:
+		bool _writeable = false;
+		bool _err = false;
+		bool _needclose = false;		
 };
 
 

@@ -2,7 +2,7 @@
 #define CONNECTED_SOCKET_EVENT
 
 #include "event_driver.h"
-
+#include "connection.h"
 namespace net{
 
 /**
@@ -11,9 +11,10 @@ namespace net{
 class TcpSocketEvent : public EventDescripter
 {
 	public:
-		TcpSocketEvent(int fd, uint32_t eventtype= EPOLLIN | EPOLLOUT |EPOLLRDHUP);
+		TcpSocketEvent(int fd, uint32_t eventtype= EPOLLIN | EPOLLOUT |EPOLLRDHUP, Connection *con=NULL);
 		~TcpSocketEvent();
 
+		//当该tcp连接上 发生时间时调用的函数
 		virtual void eventHandler(struct epoll_event &ev);
 
 		void setNext(TcpSocketEvent *T){
@@ -28,11 +29,10 @@ class TcpSocketEvent : public EventDescripter
 		TcpSocketEvent& operator=(const TcpSocketEvent &T);
 
 	private:
-		bool _writeable = false;
 		bool _err = false;
 		bool _needclose = false;
 		TcpSocketEvent *next = NULL;
-		
+		Connection *_con = NULL;
 
 };
 

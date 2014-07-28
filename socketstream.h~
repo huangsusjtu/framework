@@ -17,7 +17,7 @@ namespace net{
 			virtual ~SocketStream();
 
 			void readToPacket(PacketQueue *p);
-			bool writeFromPacket(PacketQueue *p);
+			bool writeFromPacket(const PacketQueue *p);
 		private:	
 			Socket *_socket;
 
