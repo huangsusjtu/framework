@@ -87,7 +87,7 @@ bool SocketStream::writeFromPacket(PacketQueue* queue)
 		//数据头要先发送
 		while(_pos_out < _size_out){
 			writelen = _socket->write(_buffer_out+_pos_out, _size_out - _pos_out);
-			if(writelen <0)return false ;
+			if(writelen <=0)return false ;
 			_pos_out += writelen;
 			
 		}

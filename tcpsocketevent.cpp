@@ -1,6 +1,7 @@
 #include "commond.h"
 #include "netevent.h"
 #include "tcpsocketevent.h"
+#include "datatransport.h"
 #include "logger.h"
 #include <cassert>
 
@@ -36,8 +37,8 @@ void TcpSocketEvent::eventHandler(struct epoll_event &ev)
 	{
 		//创建一个读IO事件，并加入读事件队列
 		// . . . .
-		NetReadCommond *nm = new NetReadCommond(_con);
-		NetReadQueue::instance().addBack(nm);		
+		Commond *nm = new NetReadCommond(_con);
+		Transport::instance().getReadCommondQueue()->addBack(nm);		
 
 	}
 	else if(ev.events & EPOLLOUT)

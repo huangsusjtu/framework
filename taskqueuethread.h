@@ -9,7 +9,7 @@ namespace sys{
 /**
  * 任务队列， 交给单独的线程处理
  */
-class CommondQueue : public Queue<Commond>
+/*class CommondQueue : public Queue<Commond>
 {
 	public:	
 		CommondQueue(){}
@@ -20,7 +20,8 @@ class CommondQueue : public Queue<Commond>
 		CommondQueue& operator=(const CommondQueue &T);
 
 };
-
+*/
+typedef  Queue<Commond> CommondQueue;
 
 /**
  * 处理任务队列的线程

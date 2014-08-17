@@ -18,6 +18,11 @@ void Thread::join()
 	pthread_join(mTid, NULL);
 }
 
+void Thread::detach()
+{
+	pthread_detach(mTid);
+}
+
 void Thread::stop()
 {
 	mStop = true;
@@ -26,7 +31,7 @@ void Thread::stop()
 
 void* Thread::Thread::thread_func(void *this_)
 {
-	if(this_)
+	if(this_ )
 		( static_cast<Thread*>(this_))->run();
 }
 }

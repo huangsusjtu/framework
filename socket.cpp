@@ -168,6 +168,10 @@ int Socket::setNoDelay(int val)
 int Socket::read(char* buf, int count)
 {
 	if(sock_fd<0)return -1;
+	int res;
+	//do{
+	//	res = 
+	//}while(res<0 && errno==EINTER)
         return ::read(sock_fd,buf,count);
 
 }

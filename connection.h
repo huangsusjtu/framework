@@ -18,7 +18,7 @@ class Connection{
 		virtual ~Connection();
 
 		//初始化时，添加的信息		
-		void prepare();
+		void prepare(PacketQueue *in, PacketQueue *out);
 		void setAddress(sockaddr *addr, size_t addrlen);		
 
 		int getHandle(){return _fd;}

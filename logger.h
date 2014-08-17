@@ -2,8 +2,11 @@
 #define LOGGER_
 
 #include "lock.h"
-
+#include "thread.h"
+#include "queue.h"
+#include "object.h"
 #include <cstdio>
+#include <cstring>
 #include <unistd.h>
 namespace sys{
 
@@ -18,12 +21,14 @@ enum{
 #define DEBUG "debug: "
 #define CONTENT "nothing!"
 
-class LoggerBuffer{
+
+class LoggerBuffer {
 	public:
 		unsigned char* _buf;
 		size_t _start;
 		size_t _pos;
 		size_t _size;
+		char* _logfile;
 
 	public:
 		LoggerBuffer();
@@ -31,7 +36,11 @@ class LoggerBuffer{
 		
 		//预留一个换行符
 		bool hasFreeSpace(size_t need){return need<_size-_pos;}
-		bool append(const char *level,const char* info, size_t size);	
+		bool append(const char *level,const char* info, size_t size);
+		void setFile(char *T){
+			_logfile = strdup(T);		
+		}	
+		void flushToFile();
 	private:
 		LoggerBuffer(const LoggerBuffer &T);
 		LoggerBuffer& operator=(const LoggerBuffer &T);
@@ -39,6 +48,7 @@ class LoggerBuffer{
 };
 
 class Logger : public Lock{
+	friend class  LogThread;
 
 	public:
 		static Logger& instance(){
@@ -63,23 +73,61 @@ class Logger : public Lock{
 		bool appendLine(const char *level=DEBUG,const char *line=CONTENT);
 
 		bool forceFlush(bool newfile=false);
+		
 	private:
 		Logger();
 		Logger(const Logger &T);
 		Logger& operator=(const Logger &T);
 		
 		void generateLogFileName(bool newfile=false);
-		void flushToFile(LoggerBuffer *cur, bool newfile=false);
+		
 	private:
 		class LoggerBuffer *_cur;
-		class LoggerBuffer _logbuf1;
-		class LoggerBuffer _logbuf2;
+		
+		
+		//a thread to write memory log data to log file		
+		Thread *logThread;
 
 		static Logger self;
 		char *_logfile;
 		int _fileID;
 
 };
+
+/**
+ *  线程用于 日志持久化
+ */
+class LogThread : public Thread, public Object
+{
+	typedef BlockQueue<LoggerBuffer> LogBufQueue;
+	public:
+		static LogThread& instance(){
+			if(self==NULL)
+			{
+				self = new LogThread();
+				self->start();
+				//self->detach();
+			}	
+			return *self;
+		}
+		~LogThread();
+
+		void pushTask(LoggerBuffer *T);
+		//inline void setOutBuffer(Logger *T,LoggerBuffer *cur);
+	protected:
+		virtual void run();
+	private:
+		
+		LogBufQueue _queue;
+	
+	private :
+		LogThread();
+		LogThread(const LogThread &T);
+		LogThread& operator=(const LogThread &T);
+		static LogThread *self;
+		
+};
+	
 
 }
 #endif

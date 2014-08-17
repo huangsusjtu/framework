@@ -11,9 +11,28 @@ AutoMutex::AutoMutex(mutex* m)
 	}
 }
 
+
 AutoMutex::~AutoMutex()
 {
 	if(mMutex)
 		pthread_mutex_unlock(mMutex);
 }
 
+
+AutoMutex1::AutoMutex1(Lock* m)
+{
+	if(m)
+	{
+		lock = m;
+		m->lock();
+	}else{
+		lock = NULL;
+	}
+}
+
+
+AutoMutex1::~AutoMutex1()
+{
+	if(lock)
+		lock->unlock();
+}

@@ -3,7 +3,7 @@
 CXX = g++
 LINK = g++
 LIBS = -lpthread 
-CFLAG = -std=c++11  
+CFLAG = -std=c++11  -g
 
 
 SUBDIRS := ./test

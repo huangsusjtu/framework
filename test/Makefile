@@ -7,7 +7,7 @@ CXX = g++
 LINK = g++
 INCLUDE := ../
 LIBS = -lpthread 
-CFLAG = -std=c++11  -I$(INCLUDE)
+CFLAG = -g -std=c++11  -I$(INCLUDE)
 
 
 
@@ -18,15 +18,16 @@ TESTOBJS = \
 
 
 #外部的obj
-OBJS = ../auto_mutex.o ../clientsocket.o ../lock.o \
-	../messagequeue.o  ../event_driver.o \
-	../memblock.o ../memblockpool.o ../membuffer.o ../object.o \
-	../packet.o ../packetqueue.o ../socket.o ../serversocket.o \
-	../status.o ../thread.o  \
-	../refcount.o ../socketstream.o ../connection.o \
-	../connectionmanager.o   ../logger.o  \
-	../listensocketevent.o ../tcpsocketevent.o \
-	../neteventdriver.o ../commond.o ../netevent.o \
+OBJS = ../lib/auto_mutex.o ../lib/clientsocket.o ../lib/lock.o \
+	../lib/messagequeue.o  ../lib/event_driver.o \
+	../lib/memblock.o ../lib/memblockpool.o ../lib/membuffer.o ../lib/object.o \
+	../lib/packet.o ../lib/packetqueue.o ../lib/socket.o ../lib/serversocket.o \
+	../lib/status.o ../lib/thread.o  \
+	../lib/refcount.o ../lib/socketstream.o ../lib/connection.o \
+	../lib/connectionmanager.o   ../lib/logger.o  \
+	../lib/listensocketevent.o ../lib/tcpsocketevent.o \
+	../lib/neteventdriver.o ../lib/commond.o ../lib/netevent.o \
+	../lib/datatransport.o ../lib/taskqueuethread.o  \
 
 
 #本目录下的.cpp

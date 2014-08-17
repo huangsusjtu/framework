@@ -5,15 +5,16 @@ int main()
 {
 	using namespace sys;
 	Logger& log = Logger::instance();
-	int c = 100000;
+	int c = 100;
+	std::cin>>c;
 while(c--)
 {
-	if(false==log.appendLine(ERR, "heheheheheheheh..."))
+	if(false==log.appendLine(ERR, "1234567890"))
 	{
 		std::cout<<"err append"<<std::endl;
 	}
 }
-	log.forceFlush(true);
+	LogThread::instance().join();
 	return 0;
 }
 

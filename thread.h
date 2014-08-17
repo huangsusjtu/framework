@@ -21,10 +21,12 @@ class Thread : public Runnable{
 		void start();
 		void stop();
 		void join();
+		void detach();
 
 		bool needRun(){
 			return mStop==false;		
 		}
+		
 	protected:
 		virtual void run()=0;
 
@@ -35,6 +37,21 @@ class Thread : public Runnable{
 		bool mStop;
 		pthread_t mTid;
 
+};
+
+class ThreadManager
+{
+	typedef vector<Thread*> Container;
+	public:
+		static ThreadManager& instance(){
+			return self;	
+		}
+
+		void add(Thread *T);
+		
+	private:
+		Container _threads; 
+		static ThreadManager self;
 };
 
 }

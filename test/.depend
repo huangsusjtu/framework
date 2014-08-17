@@ -1,1 +1,2 @@
-logger.o: logger.cpp ../logger.h ../lock.h
+logger.o: logger.cpp ../logger.h ../lock.h ../thread.h ../runnable.h \
+ ../queue.h ../auto_mutex.h ../object.h

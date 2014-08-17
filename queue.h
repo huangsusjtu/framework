@@ -5,6 +5,7 @@
 
 #include "auto_mutex.h"
 #include "lock.h"
+#include "object.h"
 namespace sys{
 
 /**
@@ -97,6 +98,73 @@ class Queue : public Lock{
 			Lock::unlock();
 		}	
 	private:
+		Collection mList;
+};
+
+
+/**
+ */
+template<class T>
+class BlockQueue : public Lock, virtual public Object
+{
+	typedef std::list<T*> Collection;
+	public:
+		BlockQueue(){
+		}
+
+		virtual ~BlockQueue()
+		{	
+			Lock::lock();
+			while( !mList.empty())
+			{
+				T *q = mList.front();
+				mList.pop_front();
+				delete q;	
+			}
+			Lock:unlock();
+		}		
+	
+
+		void push(T *p)
+		{
+			if(!p)return ;
+			Lock::lock();
+			mList.push_back(p);
+			Object::notify();
+			Lock:unlock();
+			
+		}
+
+
+		//有对象就返回，没有阻塞
+		T* pop()
+		{
+			while(true)
+			{	
+
+				Lock::lock();
+				if(!isEmpty()){
+					T *res = mList.front();
+					mList.pop_front();
+					Lock::unlock();
+					return res;
+				}
+				Lock::unlock();
+				Object::wait();
+			}
+			
+		}
+
+		bool isEmpty(){
+			return mList.empty();		
+		}
+		size_t size(){
+			return mList.size();
+		}
+			
+	private:
+		BlockQueue(const BlockQueue<T> &m);
+		BlockQueue& operator=(const BlockQueue<T> &m);
 		Collection mList;
 };
 
