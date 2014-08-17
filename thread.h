@@ -1,7 +1,7 @@
 #ifndef THREAD
 #define THREAD
 #include <pthread.h>
-
+#include <vector>
 #include "runnable.h"
 
 namespace sys{
@@ -38,9 +38,10 @@ class Thread : public Runnable{
 		pthread_t mTid;
 
 };
-
+using std::vector;
 class ThreadManager
 {
+	
 	typedef vector<Thread*> Container;
 	public:
 		static ThreadManager& instance(){
@@ -48,7 +49,7 @@ class ThreadManager
 		}
 
 		void add(Thread *T);
-		
+		void waitForTerminate();
 	private:
 		Container _threads; 
 		static ThreadManager self;

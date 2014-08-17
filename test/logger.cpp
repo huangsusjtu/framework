@@ -14,6 +14,7 @@ while(c--)
 		std::cout<<"err append"<<std::endl;
 	}
 }
+	log.forceFlush();
 	LogThread::instance().join();
 	return 0;
 }

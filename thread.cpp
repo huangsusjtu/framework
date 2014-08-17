@@ -34,4 +34,23 @@ void* Thread::Thread::thread_func(void *this_)
 	if(this_ )
 		( static_cast<Thread*>(this_))->run();
 }
+
+//class 
+ThreadManager ThreadManager::self;
+
+void ThreadManager::add(Thread *T)
+{
+	if(T)
+	_threads.push_back(T);
+}
+
+void ThreadManager::waitForTerminate()
+{	
+	for(int i=0;i<_threads.size();i++)
+	{
+		Thread *tmp = _threads[i];
+		tmp->join();
+	}
+}
+
 }
