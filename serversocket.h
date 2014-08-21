@@ -24,6 +24,8 @@ class ServerSocket : public Socket
 
 		bool createSocketAndListen(const int port, int backlog = 1024);
 		
+		// for block mode
+		int accept();
 	private:
 		bool socketListen(struct sockaddr *sa, socklen_t len, int backlog);
 		

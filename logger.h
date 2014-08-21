@@ -5,6 +5,8 @@
 #include "thread.h"
 #include "queue.h"
 #include "object.h"
+
+#include <stdarg.h>
 #include <cstdio>
 #include <cstring>
 #include <unistd.h>
@@ -49,25 +51,44 @@ class LoggerBuffer {
 
 class Logger : public Lock{
 	friend class  LogThread;
-
+	static const int MAX_LOG_LINE = 1024;
 	public:
 		static Logger& instance(){
 			return self;
 		}
 		~Logger();
 
-
-		static void i(const char *line){
-			self.appendLine(INFO,line);		
+		static void i(const char *fmt, ...){
+			char line[MAX_LOG_LINE];
+			 va_list ap;
+    			 va_start(ap, fmt);
+    			 vsnprintf(line, MAX_LOG_LINE, fmt, ap);
+   			 va_end(ap);
+			self.appendLine(INFO,line);	
 		}
-		static void d(const char *line){
-			self.appendLine(DEBUG,line);		
+		static void d(const char *fmt, ...){
+			char line[MAX_LOG_LINE];
+			 va_list ap;
+    			 va_start(ap, fmt);
+    			 vsnprintf(line,MAX_LOG_LINE, fmt, ap);
+   			 va_end(ap);
+			self.appendLine(DEBUG,line);	
 		}
-		static void e(const char *line){
-			self.appendLine(ERR,line);		
+		static void e(const char *fmt, ...){
+			char line[MAX_LOG_LINE];
+			 va_list ap;
+    			 va_start(ap, fmt);
+    			 vsnprintf(line, MAX_LOG_LINE, fmt, ap);
+   			 va_end(ap);
+			self.appendLine(ERR,line);
 		}
-		static void w(const char *line){
-			self.appendLine(WARN,line);		
+		static void w(const char *fmt, ...){
+			 char line[MAX_LOG_LINE];
+			 va_list ap;
+    			 va_start(ap, fmt);
+    			 vsnprintf(line, MAX_LOG_LINE, fmt, ap);
+   			 va_end(ap);
+			 self.appendLine(WARN,line);
 		}
 
 		bool appendLine(const char *level=DEBUG,const char *line=CONTENT);

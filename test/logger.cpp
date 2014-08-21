@@ -3,6 +3,7 @@
 #include <iostream>
 int main()
 {
+	std::cerr<<"int logger test"<<std::endl;
 	using namespace sys;
 	Logger& log = Logger::instance();
 	int c = 100;

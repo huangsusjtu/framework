@@ -1,2 +1,7 @@
 logger.o: logger.cpp ../logger.h ../lock.h ../thread.h ../runnable.h \
  ../queue.h ../auto_mutex.h ../object.h
+client.o: client.cpp ../clientsocket.h ../socket.h ../status.h \
+ ../auto_mutex.h ../lock.h
+server.o: server.cpp ../serversocket.h ../socket.h ../status.h \
+ ../auto_mutex.h ../lock.h ../logger.h ../thread.h ../runnable.h \
+ ../queue.h ../object.h ../thread.h

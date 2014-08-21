@@ -27,7 +27,8 @@ class Socket
 		bool disableNoDelay();
 		bool setSendBuffer(int bufsize);
 		int setReuse();
-		int setNonBlock();	
+		int setNonBlock();
+		int setBlock();	
 		int keepLive(int interval=7200);
 
 		int read(char* buf, int count);

@@ -1,5 +1,6 @@
 #include "clientsocket.h"
 #include "connection.h"
+#include "logger.h"
 
 #include <cstdio>
 #include <cstdlib>
@@ -39,6 +40,7 @@ bool ClientSocket::createByAddr(const char* addr, const int port)
 				remote_address = *(struct sockaddr_in *)(p->ai_addr);
 				remote_port = port;
 				freeaddrinfo(servinfo);
+				sys::Logger::i("Create clientsocket OK");
 				return true;
 			}
 
@@ -58,9 +60,10 @@ Connection* ClientSocket::getConnect()
 		return NULL;
 	}
 	
-	Socket *socket = new ConnectedSocket(sock_fd);
-	Connection *con = new Connection(socket);	
-	return con;
+	//Socket *socket = new ConnectedSocket(sock_fd);
+	//Connection *con = new Connection(socket);	
+	//return con;
+	return NULL;
 }
 
 

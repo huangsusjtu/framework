@@ -1,7 +1,8 @@
 auto_mutex.o: auto_mutex.cpp auto_mutex.h lock.h
 clientsocket.o: clientsocket.cpp clientsocket.h socket.h status.h \
  auto_mutex.h lock.h connection.h packet.h membuffer.h mempool.h \
- packetqueue.h socketstream.h
+ packetqueue.h socketstream.h logger.h thread.h runnable.h queue.h \
+ object.h
 commond.o: commond.cpp commond.h
 connection.o: connection.cpp connection.h packet.h membuffer.h mempool.h \
  auto_mutex.h lock.h packetqueue.h socket.h status.h socketstream.h \

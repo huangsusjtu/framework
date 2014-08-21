@@ -130,8 +130,8 @@ class BlockQueue : public Lock, virtual public Object
 			if(!p)return ;
 			Lock::lock();
 			mList.push_back(p);
-			Object::notify();
 			Lock:unlock();
+			Object::notify();
 			
 		}
 

@@ -61,9 +61,8 @@ bool LoggerBuffer::append(const char*level, const char *info, size_t size)
 Logger Logger::self;
 
 Logger::Logger():
-	_fileID(0),_logfile(NULL)
+	_fileID(0),_logfile(NULL),_cur(NULL)
 {
-	_cur = new LoggerBuffer();;
 }
 
 Logger::~Logger()
@@ -74,7 +73,8 @@ Logger::~Logger()
 
 bool Logger::appendLine(const char* level,const char *line)
 {
-	assert(line!=NULL && _cur!=NULL);
+	forceFlush(false);
+	assert(line!=NULL);
 	AutoMutex1 m(dynamic_cast<Lock*>(this));
 	
 	int size = strlen(line);
@@ -105,8 +105,9 @@ bool Logger::appendLine(const char* level,const char *line)
 */
 bool Logger::forceFlush(bool newfile)
 {
-	assert(_cur!=NULL);
-	generateLogFileName(true);
+	if(_cur==NULL)	
+		return false;
+	generateLogFileName(newfile);
 	_cur->setFile(_logfile);
 	LogThread::instance().pushTask(_cur);
 	

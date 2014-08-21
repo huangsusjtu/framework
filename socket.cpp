@@ -49,9 +49,7 @@ bool Socket::createSocket(int family, int type, int protocol)
 	if( setReuse() == -1 ){
 		goto err;
 	}
-	if( setNonBlock() !=0){
-		goto err;
-	}
+
 	return true;
 err:
 	::close(sock_fd);
@@ -96,15 +94,6 @@ bool Socket::setSendBuffer(int bufsize)
  */
 
 
-//create socket
-/*int NetworkSocket::createSocket(int domain, int socktype,int protocal)
-{
-	sock_fd = socket(domain, socktype, protocol);
-	if(sock_fd<0)
-		return -1;
-	return 0;
-}*/
-
 int Socket::setReuse()
 {
 	int yes = 1;
@@ -124,6 +113,22 @@ int Socket::setNonBlock()
 	}
 	return 0;
 }
+
+int Socket::setBlock()
+{
+	int flags;
+	/* Set the socket non-blocking.
+	 *      * Note that fcntl(2) for F_GETFL and F_SETFL can't be
+	 *           * interrupted by a signal. */
+	if ((flags = fcntl(sock_fd, F_GETFL)) == -1) {
+		return -1;
+	}
+	if (fcntl(sock_fd, F_SETFL, flags | ~O_NONBLOCK) == -1) {
+		return -2;
+	}
+	return 0;
+}
+
 
 int Socket::keepLive(int interval)
 {

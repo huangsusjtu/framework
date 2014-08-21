@@ -55,7 +55,7 @@ $(TARGET): $(OBJS)
 .PHONY: test
 test: subdirs
 subdirs:
-	 for n in $(SUBDIRS); do $(MAKE) -C $$n ; echo "compile $$n";done;
+	 #for n in $(SUBDIRS); do $(MAKE) -C $$n ; echo "compile $$n";done;
 
 
 #
