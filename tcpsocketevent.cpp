@@ -12,10 +12,10 @@ using sys::Commond;
 /**
  *
  */
-TcpSocketEvent::TcpSocketEvent(int fd, uint32_t eventtype , Connection *con)
+TcpSocketEvent::TcpSocketEvent(int fd, Connection *con,uint32_t eventtype)
 	:EventDescripter(fd, eventtype), _con(con)
 {
-	assert(con!=NULL);
+	//assert(con!=NULL);
 }
 
 TcpSocketEvent::~TcpSocketEvent()
@@ -29,8 +29,10 @@ void TcpSocketEvent::eventHandler(struct epoll_event &ev)
 {
 	EventDescripter *desc = (EventDescripter*)ev.data.ptr;	
 	assert(desc!=NULL);
+
 	if(_con==NULL){
 		sys::Logger::w("A tcpsocket event occur on null connection!");
+		std::cerr<<"A tcpsocket event occur on null connection!"<<std::endl;
 		return ;
 	}
 	if(ev.events & EPOLLIN)
@@ -39,21 +41,29 @@ void TcpSocketEvent::eventHandler(struct epoll_event &ev)
 		// . . . .
 		Commond *nm = new NetReadCommond(_con);
 		Transport::instance().getReadCommondQueue()->addBack(nm);		
-
+		sys::Logger::i("A tcpsocket read event occur on connection!");
+		std::cerr<<"A tcpsocket read event occur on connection!"<<std::endl;
 	}
 	else if(ev.events & EPOLLOUT)
 	{
 		//套接字可写，标记下就可以了
 		_con->_writeable = true;
+		sys::Logger::i("A tcpsocket writable occur on connection!");
+		std::cerr<<"A tcpsocket writable occur on connection!"<<std::endl;
 
 	}
 	else if(ev.events & EPOLLERR)
 	{
-		sys::Logger::w("A writeable on null connection!");
+		sys::Logger::i("A tcpsocket err occur on connection!");
+		std::cerr<<"A tcpsocket err occur on connection!"<<std::endl;
+
 		_con->_err = true;
 	}
 	else if(ev.events & EPOLLRDHUP)
 	{
+		sys::Logger::i("A tcpsocket remote close occur on connection!");
+		std::cerr<<"A tcpsocket remote close occur on connection!"<<std::endl;
+
 		_con->_needclose = true;
 	}
 	return ;

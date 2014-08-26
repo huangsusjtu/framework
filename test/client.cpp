@@ -9,9 +9,9 @@ int main()
 	{
 		client->getConnect();
 		std::cerr<<"create client ok"<<std::endl;
-		char line[1024];
-		client->read(line,1024);
-		std::cerr<<line<<std::endl;
+		while(1)
+		{
+		}
 		client->closeSocket();		
 	}else{
 		std::cerr<<"create client err"<<std::endl;

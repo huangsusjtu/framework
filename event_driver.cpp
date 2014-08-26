@@ -2,6 +2,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <iostream>
+#include <cerrno>
 
 #include "event_driver.h"
 
@@ -10,7 +11,7 @@ EventDriver::EventDriver()
 	epollfd = epoll_create1(0);
 	if(epollfd < 0)
 		exit(-1);
-	std::cout<<"create epool , the mem"<<std::endl;
+	std::cerr<<"create epool"<<std::endl;
 	eventbuffer = new struct epoll_event[MAX_ACTIVE_EVENT];
 }
 
@@ -18,6 +19,8 @@ EventDriver::~EventDriver()
 {
 	close(epollfd);
 	delete []eventbuffer;
+	std::cerr<<"destory epool "<<std::endl;
+	
 }
 
 bool EventDriver::addEventDescripter(EventDescripter *eventdesc)
@@ -26,7 +29,7 @@ bool EventDriver::addEventDescripter(EventDescripter *eventdesc)
 		return false;
 	if(-1==epoll_ctl(epollfd, EPOLL_CTL_ADD,eventdesc->getfd(),eventdesc->getEvent()) )
 	{
-		perror("epoll_ctl add event descriper err!");
+		std::cerr<<epollfd<<std::endl<<eventdesc->getfd()<<"epoll_ctl add event descriper err!"<<errno<<std::endl;
 		return false;
 	}
 	return true;
@@ -38,11 +41,12 @@ void EventDriver::handleEventLoop()
 	{
 		std::cout<<"begin"<<std::endl;
 		int nfds = epoll_wait(epollfd, eventbuffer,MAX_ACTIVE_EVENT, -1);
-		std::cout<<"after"<<nfds<<std::endl;
+		std::cout<<"get "<<nfds<<" events "<<std::endl;
 		for(int i=0; i<nfds;i++)
-	   {
+	   	{
+		   std::cerr<<"begin dispatchEvent!"<<std::endl;
 		   dispatchEvent(eventbuffer[i]);
-	   }
+	   	}
 	}
 }
 

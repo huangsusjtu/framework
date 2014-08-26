@@ -1,27 +1,29 @@
 auto_mutex.o: auto_mutex.cpp auto_mutex.h lock.h
 clientsocket.o: clientsocket.cpp clientsocket.h socket.h status.h \
  auto_mutex.h lock.h connection.h packet.h membuffer.h mempool.h \
- packetqueue.h socketstream.h logger.h thread.h runnable.h queue.h \
- object.h
+ packetqueue.h socketstream.h refcount.h atomic.h logger.h thread.h \
+ runnable.h queue.h object.h
 commond.o: commond.cpp commond.h
 connection.o: connection.cpp connection.h packet.h membuffer.h mempool.h \
  auto_mutex.h lock.h packetqueue.h socket.h status.h socketstream.h \
- logger.h thread.h runnable.h queue.h object.h
+ refcount.h atomic.h logger.h thread.h runnable.h queue.h object.h \
+ datatransport.h taskqueuethread.h commond.h
 connectionmanager.o: connectionmanager.cpp connectionmanager.h \
  connection.h packet.h membuffer.h mempool.h auto_mutex.h lock.h \
- packetqueue.h socket.h status.h socketstream.h
+ packetqueue.h socket.h status.h socketstream.h refcount.h atomic.h
 datatransport.o: datatransport.cpp datatransport.h packetqueue.h packet.h \
  membuffer.h mempool.h auto_mutex.h lock.h taskqueuethread.h queue.h \
  object.h commond.h thread.h runnable.h netevent.h connection.h socket.h \
- status.h socketstream.h logger.h
+ status.h socketstream.h refcount.h atomic.h logger.h
 event_driver.o: event_driver.cpp event_driver.h thread.h runnable.h
 factory.o: factory.cpp factory.h packet.h membuffer.h mempool.h \
  auto_mutex.h lock.h netevent.h queue.h object.h commond.h connection.h \
- packetqueue.h socket.h status.h socketstream.h
+ packetqueue.h socket.h status.h socketstream.h refcount.h atomic.h
 listensocketevent.o: listensocketevent.cpp listensocketevent.h \
  event_driver.h thread.h runnable.h socket.h status.h auto_mutex.h lock.h \
  connection.h packet.h membuffer.h mempool.h packetqueue.h socketstream.h \
- connectionmanager.h neteventdriver.h tcpsocketevent.h
+ refcount.h atomic.h connectionmanager.h neteventdriver.h \
+ tcpsocketevent.h
 lock.o: lock.cpp lock.h
 logger.o: logger.cpp logger.h lock.h thread.h runnable.h queue.h \
  auto_mutex.h object.h
@@ -36,7 +38,8 @@ messagequeue.o: messagequeue.cpp messagequeue.h message.h thread.h \
  runnable.h object.h auto_mutex.h lock.h
 netevent.o: netevent.cpp logger.h lock.h thread.h runnable.h queue.h \
  auto_mutex.h object.h netevent.h commond.h connection.h packet.h \
- membuffer.h mempool.h packetqueue.h socket.h status.h socketstream.h
+ membuffer.h mempool.h packetqueue.h socket.h status.h socketstream.h \
+ refcount.h atomic.h
 neteventdriver.o: neteventdriver.cpp neteventdriver.h event_driver.h \
  thread.h runnable.h
 object.o: object.cpp object.h
@@ -47,7 +50,8 @@ refcount.o: refcount.cpp refcount.h atomic.h
 serversocket.o: serversocket.cpp serversocket.h socket.h status.h \
  auto_mutex.h lock.h logger.h thread.h runnable.h queue.h object.h \
  event_driver.h listensocketevent.h neteventdriver.h connection.h \
- packet.h membuffer.h mempool.h packetqueue.h socketstream.h
+ packet.h membuffer.h mempool.h packetqueue.h socketstream.h refcount.h \
+ atomic.h
 socket.o: socket.cpp socket.h status.h auto_mutex.h lock.h
 socketstream.o: socketstream.cpp memblockpool.h auto_mutex.h lock.h \
  membuffer.h memblock.h refcount.h atomic.h object.h socketstream.h \
@@ -57,7 +61,7 @@ taskqueuethread.o: taskqueuethread.cpp taskqueuethread.h queue.h \
  auto_mutex.h lock.h object.h commond.h thread.h runnable.h
 tcpsocketevent.o: tcpsocketevent.cpp commond.h netevent.h queue.h \
  auto_mutex.h lock.h object.h connection.h packet.h membuffer.h mempool.h \
- packetqueue.h socket.h status.h socketstream.h tcpsocketevent.h \
- event_driver.h thread.h runnable.h datatransport.h taskqueuethread.h \
- logger.h
+ packetqueue.h socket.h status.h socketstream.h refcount.h atomic.h \
+ tcpsocketevent.h event_driver.h thread.h runnable.h datatransport.h \
+ taskqueuethread.h logger.h
 thread.o: thread.cpp thread.h runnable.h

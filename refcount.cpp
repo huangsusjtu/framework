@@ -16,8 +16,9 @@ void StrongRef::increase()
 void StrongRef::decrease()
 {
 	if( 0==atomic_dec_and_test(&ref) )
-	{
-		finalize();
+	{ 
+		delete this;
+		//finalize();
 	}
 }
 

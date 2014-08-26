@@ -73,7 +73,7 @@ Logger::~Logger()
 
 bool Logger::appendLine(const char* level,const char *line)
 {
-	forceFlush(false);
+
 	assert(line!=NULL);
 	AutoMutex1 m(dynamic_cast<Lock*>(this));
 	
@@ -101,7 +101,7 @@ bool Logger::appendLine(const char* level,const char *line)
 }
 
 /**
-* 刷新当前的缓冲区， 为了满足实时性
+* 刷新当前的缓冲区， 为了满足实时
 */
 bool Logger::forceFlush(bool newfile)
 {

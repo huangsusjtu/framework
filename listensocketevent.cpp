@@ -10,14 +10,14 @@
 #include <cassert>
 #include <sys/types.h>
 #include <sys/socket.h>
-
+#include <iostream>
 namespace net{
 
 /**
  * ListenEvent
  */
-ListenEvent::ListenEvent(int fd):
-	EventDescripter(fd),
+ListenEvent::ListenEvent(int fd, uint32_t eventtype):
+	EventDescripter(fd, eventtype),
 	next(NULL)
 {
 	assert(fd>0);
@@ -63,13 +63,14 @@ void ListenEvent::handleConEvent(int fd)
 		//创建连接,添加到连接管理器
 		//Socket *socket = new Socket(con_fd);
 		//socket->setNonBlock();	
-		//Connection *con = new Connection(socket);
-		//ConnectionManager::instance().addConnection(con);		
+		Connection *con = new Connection(con_fd);
+		ConnectionManager::instance().addConnection(con);		
 	
 		//将该新套接字 添加到事件监听当中
-		EventDescripter *desc = new TcpSocketEvent(con_fd);
+		EventDescripter *desc = new TcpSocketEvent(con_fd, con);
 		NetEventDriver::instance().addEventDescripter(desc);
-		TcpSocketQueue::instance().add((TcpSocketEvent*)desc);
+		//TcpSocketQueue::instance().add((TcpSocketEvent*)desc);
+		std::cerr<<"get a TcpSocketEvent"<<std::endl;
 	}
 }
 

@@ -12,7 +12,7 @@ namespace net{
 class ListenEvent : public EventDescripter{
 
 	public:
-		ListenEvent(int fd);
+		ListenEvent(int fd, uint32_t eventtype = EPOLLIN | EPOLLRDHUP | EPOLLET);
 		~ListenEvent();
 
 		void handleConnectEvent();

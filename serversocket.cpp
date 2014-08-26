@@ -60,8 +60,8 @@ bool ServerSocket::createSocketAndListen(const int port, int blacklog)
 				//ipv4
 				if (false==createSocket(p->ai_family,p->ai_socktype,p->ai_protocol) )
 					continue;
-				//setNonBlock();
-				setBlock();
+				setNonBlock();
+				//setBlock();
 				//sys::Logger::i("Create socket IPV4 Ok"); 
 				std::cerr<<"Create socket IPV4 Ok"<<std::endl;   
 				if(p->ai_socktype == SOCK_STREAM ){
@@ -74,8 +74,8 @@ bool ServerSocket::createSocketAndListen(const int port, int blacklog)
 					}
 					
 					local_address = *(struct sockaddr_in*)(p->ai_addr);
-					EventDescripter *desc = new ListenEvent(sock_fd);
-					NetEventDriver::instance().addEventDescripter(desc);
+					//EventDescripter *desc = new ListenEvent(sock_fd);
+					//NetEventDriver::instance().addEventDescripter(desc);
 					//ListenEventQueue::instance().add((ListenEvent*)desc);
 					//sys::Logger::i("Socket is IPV4 tcp listening!");   
 					std::cerr<<"Socket is IPV4 tcp listening!"<<std::endl;  

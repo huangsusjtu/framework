@@ -13,7 +13,7 @@ class StrongRef
 
 		// an interface to release resources.
 	public:
-		virtual void finalize(){}
+		//virtual void finalize(){}
 	
 	private:
 		atomic_t ref;

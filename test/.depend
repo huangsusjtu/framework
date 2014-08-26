@@ -4,4 +4,7 @@ client.o: client.cpp ../clientsocket.h ../socket.h ../status.h \
  ../auto_mutex.h ../lock.h
 server.o: server.cpp ../serversocket.h ../socket.h ../status.h \
  ../auto_mutex.h ../lock.h ../logger.h ../thread.h ../runnable.h \
- ../queue.h ../object.h ../thread.h
+ ../queue.h ../object.h ../thread.h ../neteventdriver.h ../event_driver.h \
+ ../listensocketevent.h ../datatransport.h ../packetqueue.h ../packet.h \
+ ../membuffer.h ../mempool.h ../taskqueuethread.h ../commond.h \
+ ../connection.h ../socketstream.h ../refcount.h ../atomic.h

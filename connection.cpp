@@ -1,14 +1,19 @@
 #include "connection.h"
 #include "logger.h"
+#include "datatransport.h"
+
+#include <sys/socket.h>
+
 namespace net{
 
 using sys::Logger;
 
-Connection::Connection(Socket* sock, sockaddr *addr, size_t addrlen) :
-	_socket(sock),_addr(*addr),_addr_len(addrlen)
+Connection::Connection(int sockfd):
+	_fd(sockfd)
 {
-	assert(sock!=NULL && addr!=NULL);
-	_fd = sock->getSocketHandle();
+	assert(sockfd>0);
+	_socket = new Socket(_fd);
+	prepare(Transport::instance().getReadPacketQueue(), Transport::instance().getWritePacketQueue());
 	Logger::i("A new connection created");
 }
 
@@ -39,7 +44,10 @@ Connection::~Connection()
 	Logger::i("A connection destory");
 }
 
-
+void Connection::shutdown()
+{
+	::shutdown(_fd ,SHUT_WR);
+}
 /**
 * 读取数据包并放到队列
 * 将缓冲区的数据全部读完

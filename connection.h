@@ -4,17 +4,17 @@
 #include "packetqueue.h"
 #include "socket.h"
 #include "socketstream.h"
-
+#include "refcount.h"
 
 namespace net {
 
 /**
  * 代表了服务端到客户端的一条连接，该连接可以收发数据包。
- * 关联到数据包队列
+ * 关联到数据包队列 : public StrongRef
  */
 class Connection{
 	public:
-		Connection(Socket* sock, sockaddr *addr=NULL, size_t addrlen=0);
+		Connection(int sockfd);
 		virtual ~Connection();
 
 		//初始化时，添加的信息		
@@ -27,7 +27,8 @@ class Connection{
 
 		void readPacket();
 		void writePacket();
-
+		
+		void shutdown();
 
 		void setWriteable(bool t){
 			_writeable = t;		

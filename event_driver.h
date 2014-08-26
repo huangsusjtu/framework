@@ -16,7 +16,7 @@ class EventDescripter
 {
 	public:
 		EventDescripter():fd(-1){}
-		EventDescripter(int FD,  uint32_t eventtype = EPOLLIN | EPOLLRDHUP):fd(FD){
+		EventDescripter(int FD,  uint32_t eventtype ):fd(FD){
 			if(fd>0)
 				setEvent(fd, eventtype);
 		}
@@ -26,7 +26,7 @@ class EventDescripter
 				::close(fd);
 		}
 		
-		void setEvent(int FD,uint32_t eventtype = EPOLLIN | EPOLLRDHUP)
+		void setEvent(int FD,uint32_t eventtype)
 		{
 			if(FD < 0)
 				return ;

@@ -11,7 +11,7 @@ namespace net{
 class TcpSocketEvent : public EventDescripter
 {
 	public:
-		TcpSocketEvent(int fd, uint32_t eventtype= EPOLLIN | EPOLLOUT |EPOLLRDHUP, Connection *con=NULL);
+		TcpSocketEvent(int fd, Connection *con=NULL, uint32_t eventtype= EPOLLIN | EPOLLOUT | EPOLLRDHUP | EPOLLET);
 		~TcpSocketEvent();
 
 		//当该tcp连接上 发生时间时调用的函数
