@@ -10,37 +10,43 @@
 #include "auto_mutex.h"
 #include "membuffer.h"
 /**
- * a memory block, it is thread safe. it is allocated from pool, not directly from heap.
+ * a memory block, . it is allocated from pool, not directly from heap.
  */
 class MemBlockPool;
-class MemBlock : public StrongRef ,public Lock
+
+class MemBlock
 {
-	
+	enum{
+		align_size = sizeof(unsigned long),
+		align_mask = align_size-1
+	}
 	public:
 		MemBlock(MemBlockPool *parent, int blocksize);
 		virtual ~MemBlock();
 			
-		
+
 
 		inline bool hasSpace(size_t need){
 			return freesize>=need;
 		}
-		bool allocMemBuffer(MemBuffer &T, size_t need);
-		void freeMemBuffer(MemBuffer& T);
-
-	public:
+		char* allocMemBuffer(size_t need);
 		void finalize();
 	
 	private:
 		MemBlock(const MemBlock& T);
 		MemBlock& operator=(const MemBlock& T);
+		inline size_t align(size_t size){
+			return (size +align_mask)&(~align_mask) ;
+		}		
 
-		inline bool contains(const MemBuffer &T);
+		inline bool contains(const char *p){
+			return p>=buffer && p<buffer+size;		
+		}
 	private:
 		MemBlockPool *mParent;
 		char* buffer;
 		size_t pos, freesize;
-		size_t bufsize;
+		size_t size;
 
 
 };

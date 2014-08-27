@@ -52,8 +52,4 @@ void MemBlock::freeMemBuffer(MemBuffer& T)
 }
 
 
-bool MemBlock::contains(const MemBuffer& T){
-	return (T.mData>=buffer &&
-		T.mData+T.mSize <= buffer+bufsize );
-}
 

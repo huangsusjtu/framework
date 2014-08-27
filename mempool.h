@@ -19,7 +19,6 @@ class Mempool
 		//};
 
 		static pthread_mutex_t mMutex ;
-		static Mempool<T, EXPANSION_SIZE> *self;
 		static size_t objsize ;
 		
 		Mempool<T, EXPANSION_SIZE> *next;
@@ -33,28 +32,20 @@ class Mempool
 		void expand(size_t size = EXPANSION_SIZE);
 		void shrink();
 	public:
-			static class Mempool<T, EXPANSION_SIZE>& GetInstance(size_t size=EXPANSION_SIZE){
-				//printf("1");
-				if(self)
-					return *self;
-				//printf("2");
-				AutoMutex m(&mMutex);
+			static class Mempool<T, EXPANSION_SIZE>* GetInstance(size_t size=EXPANSION_SIZE){
+		
 				//printf("3");
-				self = new Mempool<T, EXPANSION_SIZE>();
-				//printf("4");
-				return *self;
+				return new Mempool<T, EXPANSION_SIZE>();
 			}
-			static void ReleaseInstance(){
-				if(self)
-					delete self;
+			void ReleaseInstance(){
+				delete this;
 			}		
 			
 		void* alloc();
 		void free(void*);
 };
 
-TEMPLATE
-Mempool<T, EXPANSION_SIZE>* Mempool<T, EXPANSION_SIZE>::self = NULL;
+
 
 TEMPLATE
 size_t Mempool<T, EXPANSION_SIZE>::objsize = sizeof(Mempool<T, EXPANSION_SIZE>)>sizeof(T)?sizeof(Mempool<T, EXPANSION_SIZE>):sizeof(T);
