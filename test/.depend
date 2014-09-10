@@ -1,10 +1,7 @@
-logger.o: logger.cpp ../logger.h ../lock.h ../thread.h ../runnable.h \
- ../queue.h ../auto_mutex.h ../object.h
-client.o: client.cpp ../clientsocket.h ../socket.h ../status.h \
- ../auto_mutex.h ../lock.h
-server.o: server.cpp ../serversocket.h ../socket.h ../status.h \
- ../auto_mutex.h ../lock.h ../logger.h ../thread.h ../runnable.h \
- ../queue.h ../object.h ../thread.h ../neteventdriver.h ../event_driver.h \
- ../listensocketevent.h ../datatransport.h ../packetqueue.h ../packet.h \
- ../membuffer.h ../mempool.h ../taskqueuethread.h ../commond.h \
- ../connection.h ../socketstream.h ../refcount.h ../atomic.h
+connectionmanagertest.o: connectionmanagertest.cpp
+logger.o: logger.cpp ../sys/logger.h ../sys/lock.h ../sys/thread.h \
+ ../sys/runnable.h ../sys/queue.h ../sys/auto_mutex.h ../sys/object.h
+main.o: main.cpp ../sys/thread.h ../sys/runnable.h ../sys/mempool.h \
+ ../sys/auto_mutex.h ../sys/lock.h ../sys/messagequeue.h ../sys/message.h \
+ ../sys/thread.h ../sys/object.h ../sys/message.h ../sys/event_driver.h \
+ ../sys/status.h

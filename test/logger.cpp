@@ -5,6 +5,7 @@ int main()
 {
 	std::cerr<<"int logger test"<<std::endl;
 	using namespace sys;
+	using namespace net;
 	Logger& log = Logger::instance();
 	int c = 100000;
 	std::cin>>c;

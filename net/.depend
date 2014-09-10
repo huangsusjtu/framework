@@ -1,0 +1,81 @@
+clientsocket.o: clientsocket.cpp clientsocket.h socket.h ../sys/status.h \
+ ../sys/auto_mutex.h ../sys/lock.h connection.h ../sys/memblockpool.h \
+ ../sys/memblock.h ../sys/refcount.h ../sys/atomic.h ../sys/object.h \
+ ../sys/memblockpool.h datastream.h ../sys/membuffer.h Ipacket.h \
+ ../sys/mempool.h ../sys/queue.h ../sys/refcount.h ../sys/logger.h \
+ ../sys/thread.h ../sys/runnable.h ../sys/queue.h
+connection.o: connection.cpp connection.h ../sys/memblockpool.h \
+ ../sys/auto_mutex.h ../sys/lock.h ../sys/memblock.h ../sys/refcount.h \
+ ../sys/atomic.h ../sys/object.h ../sys/memblockpool.h socket.h \
+ ../sys/status.h datastream.h ../sys/membuffer.h Ipacket.h \
+ ../sys/mempool.h ../sys/queue.h ../sys/refcount.h ../sys/logger.h \
+ ../sys/thread.h ../sys/runnable.h ../sys/queue.h datatransport.h \
+ ../sys/taskqueuethread.h ../sys/commond.h
+connectionmanager.o: connectionmanager.cpp connectionmanager.h \
+ connection.h ../sys/memblockpool.h ../sys/auto_mutex.h ../sys/lock.h \
+ ../sys/memblock.h ../sys/refcount.h ../sys/atomic.h ../sys/object.h \
+ ../sys/memblockpool.h socket.h ../sys/status.h datastream.h \
+ ../sys/membuffer.h Ipacket.h ../sys/mempool.h ../sys/queue.h \
+ ../sys/refcount.h ../sys/lock.h
+datastream.o: datastream.cpp ../sys/memblockpool.h ../sys/auto_mutex.h \
+ ../sys/lock.h ../sys/memblock.h ../sys/refcount.h ../sys/atomic.h \
+ ../sys/object.h ../sys/memblockpool.h datastream.h ../sys/membuffer.h \
+ Ipacket.h ../sys/mempool.h ../sys/queue.h
+datatransport.o: datatransport.cpp datatransport.h Ipacket.h \
+ ../sys/mempool.h ../sys/auto_mutex.h ../sys/lock.h ../sys/membuffer.h \
+ ../sys/queue.h ../sys/object.h ../sys/taskqueuethread.h ../sys/queue.h \
+ ../sys/commond.h ../sys/thread.h ../sys/runnable.h datastream.h \
+ netevent.h ../sys/commond.h connection.h ../sys/memblockpool.h \
+ ../sys/memblock.h ../sys/refcount.h ../sys/atomic.h \
+ ../sys/memblockpool.h socket.h ../sys/status.h ../sys/refcount.h \
+ ../sys/logger.h
+factory.o: factory.cpp factory.h netevent.h ../sys/queue.h \
+ ../sys/auto_mutex.h ../sys/lock.h ../sys/object.h ../sys/commond.h \
+ connection.h ../sys/memblockpool.h ../sys/memblock.h ../sys/refcount.h \
+ ../sys/atomic.h ../sys/memblockpool.h socket.h ../sys/status.h \
+ datastream.h ../sys/membuffer.h Ipacket.h ../sys/mempool.h \
+ ../sys/refcount.h
+Ipacket.o: Ipacket.cpp Ipacket.h ../sys/mempool.h ../sys/auto_mutex.h \
+ ../sys/lock.h ../sys/membuffer.h ../sys/queue.h ../sys/object.h \
+ connection.h ../sys/memblockpool.h ../sys/memblock.h ../sys/refcount.h \
+ ../sys/atomic.h ../sys/memblockpool.h socket.h ../sys/status.h \
+ datastream.h ../sys/refcount.h
+listensocketevent.o: listensocketevent.cpp listensocketevent.h \
+ ../sys/event_driver.h ../sys/thread.h ../sys/runnable.h socket.h \
+ ../sys/status.h ../sys/auto_mutex.h ../sys/lock.h connection.h \
+ ../sys/memblockpool.h ../sys/memblock.h ../sys/refcount.h \
+ ../sys/atomic.h ../sys/object.h ../sys/memblockpool.h datastream.h \
+ ../sys/membuffer.h Ipacket.h ../sys/mempool.h ../sys/queue.h \
+ ../sys/refcount.h connectionmanager.h ../sys/lock.h neteventdriver.h \
+ tcpsocketevent.h
+main.o: main.cpp ../sys/thread.h ../sys/runnable.h ../sys/mempool.h \
+ ../sys/auto_mutex.h ../sys/lock.h datatransport.h Ipacket.h \
+ ../sys/membuffer.h ../sys/queue.h ../sys/object.h \
+ ../sys/taskqueuethread.h ../sys/queue.h ../sys/commond.h ../sys/thread.h \
+ ../sys/event_driver.h ../sys/status.h
+netevent.o: netevent.cpp ../sys/logger.h ../sys/lock.h ../sys/thread.h \
+ ../sys/runnable.h ../sys/queue.h ../sys/auto_mutex.h ../sys/object.h \
+ netevent.h ../sys/queue.h ../sys/commond.h connection.h \
+ ../sys/memblockpool.h ../sys/memblock.h ../sys/refcount.h \
+ ../sys/atomic.h ../sys/memblockpool.h socket.h ../sys/status.h \
+ datastream.h ../sys/membuffer.h Ipacket.h ../sys/mempool.h \
+ ../sys/refcount.h
+neteventdriver.o: neteventdriver.cpp neteventdriver.h \
+ ../sys/event_driver.h ../sys/thread.h ../sys/runnable.h
+serversocket.o: serversocket.cpp serversocket.h socket.h ../sys/status.h \
+ ../sys/auto_mutex.h ../sys/lock.h ../sys/logger.h ../sys/thread.h \
+ ../sys/runnable.h ../sys/queue.h ../sys/object.h ../sys/event_driver.h \
+ listensocketevent.h neteventdriver.h connection.h ../sys/memblockpool.h \
+ ../sys/memblock.h ../sys/refcount.h ../sys/atomic.h \
+ ../sys/memblockpool.h datastream.h ../sys/membuffer.h Ipacket.h \
+ ../sys/mempool.h ../sys/queue.h ../sys/refcount.h
+socket.o: socket.cpp socket.h ../sys/status.h ../sys/auto_mutex.h \
+ ../sys/lock.h
+tcpsocketevent.o: tcpsocketevent.cpp ../sys/commond.h netevent.h \
+ ../sys/queue.h ../sys/auto_mutex.h ../sys/lock.h ../sys/object.h \
+ connection.h ../sys/memblockpool.h ../sys/memblock.h ../sys/refcount.h \
+ ../sys/atomic.h ../sys/memblockpool.h socket.h ../sys/status.h \
+ datastream.h ../sys/membuffer.h Ipacket.h ../sys/mempool.h \
+ ../sys/refcount.h tcpsocketevent.h ../sys/event_driver.h ../sys/thread.h \
+ ../sys/runnable.h datatransport.h ../sys/taskqueuethread.h \
+ ../sys/queue.h ../sys/commond.h ../sys/logger.h

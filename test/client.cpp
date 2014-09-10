@@ -3,6 +3,7 @@
 #include <iostream>
 int main()
 {
+	using namespace sys;
 	using namespace net;
 	ClientSocket *client = new ClientSocket();
 	if(client->createByAddr("huangsu-Lenovo-IdeaPad-Y410P", 10000) ==true )
