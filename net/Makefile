@@ -6,7 +6,7 @@ LIBS = -lpthread
 CFLAG = -std=c++11  -g -I../sys
 
 TOPDIR := ../
-LIBDIR := $(TOPDIR)/lib
+LIBDIR := $(TOPDIR)lib
 
 
 SRCS = $(wildcard *.cpp)  
@@ -17,8 +17,8 @@ OBJS = ${SRCS:%.cpp=%.o}
   
 .PHONY: all
 all: depend $(OBJS)
-	if [ ! -d ./lib ]; then mkdir LIBDIR;  fi
-	for t in $(OBJS);do mv $$t LIBDIR; done 
+	if [ ! -d $(LIBDIR) ]; then mkdir $(LIBDIR);  fi
+	for t in $(OBJS);do mv $$t $(LIBDIR); done 
 
 depend:  
 	@$(CC) $(CFLAG) -MM $(SRCS) $(TESTS)  > .depend  

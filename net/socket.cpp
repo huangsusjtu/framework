@@ -89,13 +89,14 @@ bool Socket::setSendBuffer(int bufsize)
 }
 int Socket::getSendBuffer()
 {
-	int res, size = sizeof(res);
+	int res;
+	socklen_t size = sizeof(res);
 	if (getsockopt(sock_fd, SOL_SOCKET, SO_SNDBUF, (char*)&res, &size) == 0)
 	{
 		return res;
 	}
 	return -1;
-}
+
 }
 
 /**

@@ -10,8 +10,8 @@ class StrongRef
 		StrongRef();	
 		virtual ~StrongRef();
 
-		void increase();
-		void decrease();
+		void increaseRef();
+		void decreaseRef();
 
 		// an interface to release resources.
 	public:
@@ -21,6 +21,18 @@ class StrongRef
 		atomic_t ref;
 
 };
+/*
+template<class T>
+class sp
+{
+	public:
+		sp(T* obj);
+		~sp();
+		sp(const sp<T>& t);
+		
+	private:
+		T *_obj;
+};*/
 
 }
 #endif

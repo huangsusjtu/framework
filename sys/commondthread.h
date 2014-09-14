@@ -26,18 +26,18 @@ typedef  BlockQueue<Commond> CommondQueue;
 /**
  * 处理任务队列的线程
  */
-class TaskQueueThread : public Thread
+class CommondThread : public Thread
 {
 	public:
-		TaskQueueThread(CommondQueue *queue);
-		~TaskQueueThread();
+		CommondThread(CommondQueue *queue);
+		~CommondThread();
 
 	protected:
 		//重载
 		virtual void run();
 	private:
-		TaskQueueThread(const TaskQueueThread &T);
-		TaskQueueThread& operator=(const TaskQueueThread &T);
+		CommondThread(const CommondThread &T);
+		CommondThread& operator=(const CommondThread &T);
 
 	private:
 		CommondQueue *mQueue;

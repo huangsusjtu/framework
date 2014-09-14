@@ -1,19 +1,19 @@
-#include "taskqueuethread.h"
+#include "commondthread.h"
 #include <cassert>
 
 namespace sys{
 
-TaskQueueThread::TaskQueueThread(CommondQueue *queue) : mQueue(queue) 
+CommondThread::CommondThread(CommondQueue *queue) : mQueue(queue) 
 {
 	assert(queue!=NULL);
 }
 
-TaskQueueThread::~TaskQueueThread()
+CommondThread::~CommondThread()
 {}
 
 
 //重载父类，具体要做的事情
-void TaskQueueThread::run()
+void CommondThread::run()
 {
 	while( Thread::needRun() )
 	{

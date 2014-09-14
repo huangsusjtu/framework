@@ -2,11 +2,11 @@
 #define PACKET_TRANSPORT
 
 #include "Ipacket.h"
-#include "taskqueuethread.h"
+#include "commondthread.h"
 
 namespace net{
 using namespace sys;
-using sys::TaskQueueThread;
+using sys::CommondThread;
 using sys::CommondQueue;
 /**
  * data transport through network
@@ -42,12 +42,12 @@ class Transport{
 			return _writeQueue;
 		}
 
-		TaskQueueThread *getThread(){
+		CommondThread *getThread(){
 			return _readwriteThread;
 		}
 
 	
-		TaskQueueThread *getErrThread(){
+		CommondThread *getErrThread(){
 			return _errThread;
 		}
 	
@@ -66,8 +66,8 @@ class Transport{
 		PacketQueue *_readQueue;
 		PacketQueue *_writeQueue;
 		//读写线程
-		TaskQueueThread *_readwriteThread;
-		TaskQueueThread *_errThread;
+		CommondThread *_readwriteThread;
+		CommondThread *_errThread;
 		//typedef BlockQueue<Commond> CommondQueue
 		//命令队列， 读写命令
 		CommondQueue *_commondQueue;

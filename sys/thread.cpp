@@ -2,7 +2,7 @@
 
 namespace sys{
 
-Thread::Thread():mStop(true)
+Thread::Thread():_stop(true),_finish(true)
 {
 	
 }
@@ -13,30 +13,36 @@ Thread::~Thread(){
 
 void Thread::start()
 {
-	mStop = false;	
-	pthread_create(&mTid, NULL,thread_func, this);
+	_stop = false;
+	_finish = false;	
+	pthread_create(&_tid, NULL,thread_func, (void*)this);
+	detach();
 }
 
 void Thread::join()
 {
-	pthread_join(mTid, NULL);
+	pthread_join(_tid, NULL);
 }
 
 void Thread::detach()
 {
-	pthread_detach(mTid);
+	pthread_detach(_tid);
 }
 
 void Thread::stop()
 {
-	mStop = true;
+	_stop = true;
 	//pthread_exit(0);
 }
 
 void* Thread::thread_func(void *this_)
 {
 	if(this_ )
-		( static_cast<Thread*>(this_))->run();
+	{
+		Thread *tmp =  static_cast<Thread*>(this_);
+		tmp->run();
+		tmp->finish();
+	}
 }
 
 //class 

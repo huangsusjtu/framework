@@ -18,7 +18,8 @@ Transport::Transport()
 		_readQueue = new PacketQueue();
 		_writeQueue = new PacketQueue();
 		_commondQueue = new CommondQueue();
-		_readwriteThread = new TaskQueueThread(_commondQueue);
+		_readwriteThread = new CommondThread(_commondQueue);
+		_errThread = new CommondThread(_commondQueue);
 	}
 	catch(exception &e)
 	{
@@ -31,7 +32,7 @@ Transport::Transport()
 Transport::~Transport()
 {
 	if(_readwriteThread)delete _readwriteThread;
-
+	if(_errThread) delete _errThread;
 
 	if(_commondQueue)delete _commondQueue;
 	

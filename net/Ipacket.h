@@ -62,7 +62,18 @@ class NormalPacket : public IPacket
 		}
 		MemBuffer* getText(){
 			return data;		
+		}
+		
+		const char* getData(){
+			return data->getBuf();		
 		}		
+		size_t getDataLen(){
+			return data->getDataLen();		
+		}
+		void appendString(const char *buf, size_t len){
+			if(buf!=NULL)			
+				data->writeString(buf, len);		
+		}
 	private:
 		MemBuffer *data;
 };

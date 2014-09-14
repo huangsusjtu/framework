@@ -10,12 +10,12 @@ StrongRef::StrongRef()
 StrongRef::~StrongRef()
 {}
 
-void StrongRef::increase()
+void StrongRef::increaseRef()
 {
 	atomic_inc(&ref);
 }
 
-void StrongRef::decrease()
+void StrongRef::decreaseRef()
 {
 	if( 0==atomic_dec_and_test(&ref) )
 	{ 

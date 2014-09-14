@@ -10,7 +10,7 @@ connection.o: connection.cpp connection.h ../sys/memblockpool.h \
  ../sys/status.h datastream.h ../sys/membuffer.h Ipacket.h \
  ../sys/mempool.h ../sys/queue.h ../sys/refcount.h ../sys/logger.h \
  ../sys/thread.h ../sys/runnable.h ../sys/queue.h datatransport.h \
- ../sys/taskqueuethread.h ../sys/commond.h
+ ../sys/commondthread.h ../sys/commond.h
 connectionmanager.o: connectionmanager.cpp connectionmanager.h \
  connection.h ../sys/memblockpool.h ../sys/auto_mutex.h ../sys/lock.h \
  ../sys/memblock.h ../sys/refcount.h ../sys/atomic.h ../sys/object.h \
@@ -23,13 +23,20 @@ datastream.o: datastream.cpp ../sys/memblockpool.h ../sys/auto_mutex.h \
  Ipacket.h ../sys/mempool.h ../sys/queue.h
 datatransport.o: datatransport.cpp datatransport.h Ipacket.h \
  ../sys/mempool.h ../sys/auto_mutex.h ../sys/lock.h ../sys/membuffer.h \
- ../sys/queue.h ../sys/object.h ../sys/taskqueuethread.h ../sys/queue.h \
+ ../sys/queue.h ../sys/object.h ../sys/commondthread.h ../sys/queue.h \
  ../sys/commond.h ../sys/thread.h ../sys/runnable.h datastream.h \
  netevent.h ../sys/commond.h connection.h ../sys/memblockpool.h \
  ../sys/memblock.h ../sys/refcount.h ../sys/atomic.h \
  ../sys/memblockpool.h socket.h ../sys/status.h ../sys/refcount.h \
  ../sys/logger.h
-factory.o: factory.cpp factory.h netevent.h ../sys/queue.h \
+handlerthread.o: handlerthread.cpp handlerthread.h ../sys/thread.h \
+ ../sys/runnable.h Ipacket.h ../sys/mempool.h ../sys/auto_mutex.h \
+ ../sys/lock.h ../sys/membuffer.h ../sys/queue.h ../sys/object.h \
+ serverhandler.h Ifactory.h netevent.h ../sys/commond.h connection.h \
+ ../sys/memblockpool.h ../sys/memblock.h ../sys/refcount.h \
+ ../sys/atomic.h ../sys/memblockpool.h socket.h ../sys/status.h \
+ datastream.h ../sys/refcount.h
+Ifactory.o: Ifactory.cpp Ifactory.h netevent.h ../sys/queue.h \
  ../sys/auto_mutex.h ../sys/lock.h ../sys/object.h ../sys/commond.h \
  connection.h ../sys/memblockpool.h ../sys/memblock.h ../sys/refcount.h \
  ../sys/atomic.h ../sys/memblockpool.h socket.h ../sys/status.h \
@@ -50,9 +57,9 @@ listensocketevent.o: listensocketevent.cpp listensocketevent.h \
  tcpsocketevent.h
 main.o: main.cpp ../sys/thread.h ../sys/runnable.h ../sys/mempool.h \
  ../sys/auto_mutex.h ../sys/lock.h datatransport.h Ipacket.h \
- ../sys/membuffer.h ../sys/queue.h ../sys/object.h \
- ../sys/taskqueuethread.h ../sys/queue.h ../sys/commond.h ../sys/thread.h \
- ../sys/event_driver.h ../sys/status.h
+ ../sys/membuffer.h ../sys/queue.h ../sys/object.h ../sys/commondthread.h \
+ ../sys/queue.h ../sys/commond.h ../sys/thread.h ../sys/event_driver.h \
+ ../sys/status.h
 netevent.o: netevent.cpp ../sys/logger.h ../sys/lock.h ../sys/thread.h \
  ../sys/runnable.h ../sys/queue.h ../sys/auto_mutex.h ../sys/object.h \
  netevent.h ../sys/queue.h ../sys/commond.h connection.h \
@@ -62,6 +69,12 @@ netevent.o: netevent.cpp ../sys/logger.h ../sys/lock.h ../sys/thread.h \
  ../sys/refcount.h
 neteventdriver.o: neteventdriver.cpp neteventdriver.h \
  ../sys/event_driver.h ../sys/thread.h ../sys/runnable.h
+serverhandler.o: serverhandler.cpp serverhandler.h Ipacket.h \
+ ../sys/mempool.h ../sys/auto_mutex.h ../sys/lock.h ../sys/membuffer.h \
+ ../sys/queue.h ../sys/object.h Ifactory.h netevent.h ../sys/commond.h \
+ connection.h ../sys/memblockpool.h ../sys/memblock.h ../sys/refcount.h \
+ ../sys/atomic.h ../sys/memblockpool.h socket.h ../sys/status.h \
+ datastream.h ../sys/refcount.h
 serversocket.o: serversocket.cpp serversocket.h socket.h ../sys/status.h \
  ../sys/auto_mutex.h ../sys/lock.h ../sys/logger.h ../sys/thread.h \
  ../sys/runnable.h ../sys/queue.h ../sys/object.h ../sys/event_driver.h \
@@ -77,5 +90,5 @@ tcpsocketevent.o: tcpsocketevent.cpp ../sys/commond.h netevent.h \
  ../sys/atomic.h ../sys/memblockpool.h socket.h ../sys/status.h \
  datastream.h ../sys/membuffer.h Ipacket.h ../sys/mempool.h \
  ../sys/refcount.h tcpsocketevent.h ../sys/event_driver.h ../sys/thread.h \
- ../sys/runnable.h datatransport.h ../sys/taskqueuethread.h \
- ../sys/queue.h ../sys/commond.h ../sys/logger.h
+ ../sys/runnable.h datatransport.h ../sys/commondthread.h ../sys/queue.h \
+ ../sys/commond.h ../sys/logger.h

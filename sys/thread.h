@@ -13,7 +13,7 @@ class Thread : public Runnable{
 		
 
 		pthread_t getThreadHandle(){
-			return mTid;
+			return _tid;
 		}
 		
 		
@@ -24,7 +24,10 @@ class Thread : public Runnable{
 		void detach();
 
 		bool needRun(){
-			return mStop==false;		
+			return _stop==false;		
+		}
+		void finish(){
+			_finish = true;		
 		}
 		
 	protected:
@@ -34,8 +37,9 @@ class Thread : public Runnable{
 		Thread(const Thread&);
 		Thread& operator=(const Thread&);
 	private:
-		bool mStop;
-		pthread_t mTid=0;
+		bool _stop;
+		bool _finish;
+		pthread_t _tid=0;
 
 };
 using std::vector;

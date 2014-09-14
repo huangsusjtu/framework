@@ -12,7 +12,6 @@ ClientSocket	clientsocket.cpp	/^ClientSocket::ClientSocket(): Socket()$/;"	f	cla
 ClientSocket	clientsocket.h	/^		ClientSocket();$/;"	p	class:net::ClientSocket	access:public	signature:()
 ClientSocket	clientsocket.h	/^		ClientSocket(const ClientSocket &T);$/;"	p	class:net::ClientSocket	access:private	signature:(const ClientSocket &T)
 ClientSocket	clientsocket.h	/^class ClientSocket : public Socket$/;"	c	namespace:net	inherits:Socket
-Collection	packetqueue.h	/^	typedef std::list<Packet*> Collection;$/;"	t	class:net::PacketQueue	access:private
 ConnectedSocket	socket.h	/^		ConnectedSocket(int sockfd){sock_fd = sockfd;}$/;"	f	class:net::ConnectedSocket	access:public	signature:(int sockfd)
 ConnectedSocket	socket.h	/^class ConnectedSocket : public Socket$/;"	c	namespace:net	inherits:Socket
 Connection	connection.cpp	/^Connection::Connection(int sockfd):$/;"	f	class:net::Connection	signature:(int sockfd)
@@ -23,30 +22,30 @@ ConnectionManager	connectionmanager.h	/^		ConnectionManager();$/;"	p	class:net::
 ConnectionManager	connectionmanager.h	/^		ConnectionManager(const ConnectionManager &T);$/;"	p	class:net::ConnectionManager	access:private	signature:(const ConnectionManager &T)
 ConnectionManager	connectionmanager.h	/^class ConnectionManager : public Lock{$/;"	c	namespace:net	inherits:Lock
 DataStream	datastream.cpp	/^DataStream::DataStream()$/;"	f	class:net::DataStream	signature:()
-DataStream	datastream.h	/^			DataStream();$/;"	p	class:net::DataStream	access:public	signature:()
-DataStream	datastream.h	/^	class DataStream{$/;"	c	namespace:net
+DataStream	datastream.h	/^		DataStream();$/;"	p	class:net::DataStream	access:public	signature:()
+DataStream	datastream.h	/^class DataStream{$/;"	c	namespace:net
+EchoFactory	factory.h	/^		EchoFactory(){};$/;"	f	class:EchoFactory	access:public	signature:()
+EchoFactory	factory.h	/^class EchoFactory: public IFactory$/;"	c	inherits:IFactory
+EchoFactory::EchoFactory	factory.h	/^		EchoFactory(){};$/;"	f	class:EchoFactory	access:public	signature:()
+EchoFactory::createRequest	factory.cpp	/^IPacket* EchoFactory::createRequest()$/;"	f	class:EchoFactory	signature:()
+EchoFactory::createRequest	factory.h	/^		IPacket* createRequest();$/;"	p	class:EchoFactory	access:public	signature:()
+EchoFactory::createResponse	factory.cpp	/^IPacket* EchoFactory::createResponse()$/;"	f	class:EchoFactory	signature:()
+EchoFactory::createResponse	factory.h	/^		IPacket* createResponse();$/;"	p	class:EchoFactory	access:public	signature:()
+EchoFactory::~EchoFactory	factory.h	/^		~EchoFactory(){};$/;"	f	class:EchoFactory	access:public	signature:()
 FACTORY__	factory.h	2;"	d
-Factory	factory.h	/^		Factory(){};$/;"	f	class:Factory	access:public	signature:()
-Factory	factory.h	/^class Factory : public IFactory$/;"	c	inherits:IFactory
-Factory::Factory	factory.h	/^		Factory(){};$/;"	f	class:Factory	access:public	signature:()
-Factory::createNetReadCommond	factory.cpp	/^NetReadCommond* Factory::createNetReadCommond(Connection *con)$/;"	f	class:Factory	signature:(Connection *con)
-Factory::createNetReadCommond	factory.h	/^		NetReadCommond* createNetReadCommond(Connection *con);$/;"	p	class:Factory	access:public	signature:(Connection *con)
-Factory::createNetWriteCommond	factory.cpp	/^NetWriteCommond* Factory::createNetWriteCommond(Connection *con)$/;"	f	class:Factory	signature:(Connection *con)
-Factory::createNetWriteCommond	factory.h	/^		NetWriteCommond* createNetWriteCommond(Connection *con);$/;"	p	class:Factory	access:public	signature:(Connection *con)
-Factory::createPacket	factory.cpp	/^Packet* Factory::createPacket()$/;"	f	class:Factory	signature:()
-Factory::createPacket	factory.h	/^		Packet* createPacket();$/;"	p	class:Factory	access:public	signature:()
-Factory::~Factory	factory.h	/^		~Factory(){};$/;"	f	class:Factory	access:public	signature:()
 HashBucketSize	connectionmanager.h	/^		HashBucketSize = 1024$/;"	e	enum:net::ConnectionManager::__anon1
 HashCollection	connectionmanager.h	/^	typedef std::unordered_map<int, class Connection*> HashCollection;$/;"	t	class:net::ConnectionManager	access:private
 HashIter	connectionmanager.h	/^	typedef HashCollection::iterator HashIter;$/;"	t	class:net::ConnectionManager	access:private
 IFactory	factory.h	/^		IFactory(){};$/;"	f	class:IFactory	access:public	signature:()
 IFactory	factory.h	/^class IFactory{$/;"	c
 IFactory::IFactory	factory.h	/^		IFactory(){};$/;"	f	class:IFactory	access:public	signature:()
-IFactory::createNetReadCommond	factory.h	/^		virtual NetReadCommond* createNetReadCommond(Connection *con)=0;$/;"	p	class:IFactory	access:public	signature:(Connection *con)
-IFactory::createNetWriteCommond	factory.h	/^		virtual NetWriteCommond* createNetWriteCommond(Connection *con)=0;$/;"	p	class:IFactory	access:public	signature:(Connection *con)
-IFactory::createPacket	factory.h	/^		virtual Packet* createPacket()=0;$/;"	p	class:IFactory	access:public	signature:()
+IFactory::createRequest	factory.h	/^		virtual IPacket* createRequest() = 0;$/;"	p	class:IFactory	access:public	signature:()
+IFactory::createResponse	factory.h	/^		virtual IPacket* createResponse() = 0;$/;"	p	class:IFactory	access:public	signature:()
 IFactory::~IFactory	factory.h	/^		virtual ~IFactory(){};$/;"	f	class:IFactory	access:public	signature:()
-LIBDIR	Makefile	/^LIBDIR := $(TOPDIR)\/lib$/;"	m
+IPacket	Ipacket.cpp	/^IPacket::IPacket()$/;"	f	class:net::IPacket	signature:()
+IPacket	Ipacket.h	/^		IPacket();$/;"	p	class:net::IPacket	access:public	signature:()
+IPacket	Ipacket.h	/^class IPacket$/;"	c	namespace:net
+LIBDIR	Makefile	/^LIBDIR := $(TOPDIR)lib$/;"	m
 LIBS	Makefile	/^LIBS = -lpthread $/;"	m
 LINK	Makefile	/^LINK = g++$/;"	m
 LISTEN_SOCKET_EVENT_	listensocketevent.h	2;"	d
@@ -67,26 +66,23 @@ NetEventDriver	neteventdriver.h	/^		NetEventDriver();$/;"	p	class:net::NetEventD
 NetEventDriver	neteventdriver.h	/^		NetEventDriver(const NetEventDriver &T);$/;"	p	class:net::NetEventDriver	access:private	signature:(const NetEventDriver &T)
 NetEventDriver	neteventdriver.h	/^class NetEventDriver : public EventDriver$/;"	c	namespace:net	inherits:EventDriver
 NetReadCommond	netevent.cpp	/^NetReadCommond::NetReadCommond(Connection *con)$/;"	f	class:net::NetReadCommond	signature:(Connection *con)
-NetReadCommond	netevent.h	/^		NetReadCommond(Connection *con);$/;"	p	class:net::NetReadCommond	access:public	signature:(Connection *con)
+NetReadCommond	netevent.h	/^		NetReadCommond(Connection *con = NULL);$/;"	p	class:net::NetReadCommond	access:public	signature:(Connection *con = NULL)
 NetReadCommond	netevent.h	/^class NetReadCommond : public Commond{$/;"	c	namespace:net	inherits:Commond
-NetReadQueue	netevent.h	/^typedef Queue<NetReadCommond> NetReadQueue;$/;"	t	namespace:net
-NetWriteCommond	netevent.cpp	/^NetWriteCommond::NetWriteCommond(Connection *con)$/;"	f	class:net::NetWriteCommond	signature:(Connection *con)
-NetWriteCommond	netevent.h	/^		NetWriteCommond(Connection *con);$/;"	p	class:net::NetWriteCommond	access:public	signature:(Connection *con)
-NetWriteCommond	netevent.h	/^class NetWriteCommond : public Commond$/;"	c	namespace:net	inherits:Commond
-NetWriteQueue	netevent.h	/^typedef Queue<NetWriteCommond> NetWriteQueue;$/;"	t	namespace:net
+NetWriteCommond	netevent.cpp	/^NetWriteCommond::NetWriteCommond(IPacket *p)$/;"	f	class:net::NetWriteCommond	signature:(IPacket *p)
+NetWriteCommond	netevent.h	/^		NetWriteCommond(IPacket *p = NULL);$/;"	p	class:net::NetWriteCommond	access:public	signature:(IPacket *p = NULL)
+NetWriteCommond	netevent.h	/^class NetWriteCommond : public Commond{$/;"	c	namespace:net	inherits:Commond
+NormalDataStream	datastream.h	/^class NormalDataStream : public DataStream$/;"	c	namespace:net	inherits:DataStream
+NormalPacket	Ipacket.h	/^		NormalPacket()$/;"	f	class:net::NormalPacket	access:public	signature:()
+NormalPacket	Ipacket.h	/^class NormalPacket : public IPacket$/;"	c	namespace:net	inherits:IPacket
 OBJS	Makefile	/^OBJS = ${SRCS:%.cpp=%.o} $/;"	m
-PACKETQUEUE	packetqueue.h	2;"	d
 PACKET_TRANSPORT	datatransport.h	2;"	d
-Packet	packet.cpp	/^	Packet::Packet(char *addr, size_t size):_buf(addr),_len(size),_pos(0),_next(NULL)$/;"	f	class:net::Packet	signature:(char *addr, size_t size)
-Packet	packet.h	/^			Packet(char* addr=NULL, size_t size=0);$/;"	p	class:net::Packet	access:public	signature:(char* addr=NULL, size_t size=0)
-Packet	packet.h	/^	class Packet$/;"	c	namespace:net
-PacketHeader	packet.h	/^	class PacketHeader{$/;"	c	namespace:net
-PacketQueue	packetqueue.cpp	/^PacketQueue::PacketQueue()$/;"	f	class:net::PacketQueue	signature:()
-PacketQueue	packetqueue.h	/^		PacketQueue();$/;"	p	class:net::PacketQueue	access:public	signature:()
-PacketQueue	packetqueue.h	/^class PacketQueue : public Lock{$/;"	c	namespace:net	inherits:Lock
+PacketHeader	Ipacket.h	/^class PacketHeader{$/;"	c	namespace:net
+PacketQueue	Ipacket.h	/^typedef BlockQueue<IPacket> PacketQueue;$/;"	t	namespace:net
 SERVERSOCKET	serversocket.h	2;"	d
 SOCKET	socket.h	5;"	d
 SRCS	Makefile	/^SRCS = $(wildcard *.cpp)  $/;"	m
+ServerHandler	serverhandler.h	/^		ServerHandler(IFactory* factory){$/;"	f	class:net::ServerHandler	access:public	signature:(IFactory* factory)
+ServerHandler	serverhandler.h	/^class ServerHandler$/;"	c	namespace:net
 ServerSocket	serversocket.cpp	/^ServerSocket::ServerSocket():Socket(),hostname(NULL)$/;"	f	class:net::ServerSocket	signature:()
 ServerSocket	serversocket.h	/^		ServerSocket();$/;"	p	class:net::ServerSocket	access:public	signature:()
 ServerSocket	serversocket.h	/^		ServerSocket(const ServerSocket &T);$/;"	p	class:net::ServerSocket	access:private	signature:(const ServerSocket &T)
@@ -99,147 +95,136 @@ TcpSocketEvent	tcpsocketevent.cpp	/^TcpSocketEvent::TcpSocketEvent(int fd, Conne
 TcpSocketEvent	tcpsocketevent.h	/^		TcpSocketEvent(const TcpSocketEvent &T);$/;"	p	class:net::TcpSocketEvent	access:private	signature:(const TcpSocketEvent &T)
 TcpSocketEvent	tcpsocketevent.h	/^		TcpSocketEvent(int fd, Connection *con=NULL, uint32_t eventtype= EPOLLIN | EPOLLOUT | EPOLLRDHUP | EPOLLET);$/;"	p	class:net::TcpSocketEvent	access:public	signature:(int fd, Connection *con=NULL, uint32_t eventtype= EPOLLIN | EPOLLOUT | EPOLLRDHUP | EPOLLET)
 TcpSocketEvent	tcpsocketevent.h	/^class TcpSocketEvent : public EventDescripter$/;"	c	namespace:net	inherits:EventDescripter
-TcpSocketQueue	tcpsocketevent.cpp	/^TcpSocketQueue::TcpSocketQueue():$/;"	f	class:net::TcpSocketQueue	signature:()
-TcpSocketQueue	tcpsocketevent.h	/^		TcpSocketQueue();$/;"	p	class:net::TcpSocketQueue	access:private	signature:()
-TcpSocketQueue	tcpsocketevent.h	/^		TcpSocketQueue(const TcpSocketQueue &T);$/;"	p	class:net::TcpSocketQueue	access:private	signature:(const TcpSocketQueue &T)
-TcpSocketQueue	tcpsocketevent.h	/^class TcpSocketQueue$/;"	c	namespace:net
 Transport	datatransport.cpp	/^Transport::Transport()$/;"	f	class:net::Transport	signature:()
 Transport	datatransport.h	/^		Transport();$/;"	p	class:net::Transport	access:private	signature:()
 Transport	datatransport.h	/^		Transport(const Transport &T);$/;"	p	class:net::Transport	access:private	signature:(const Transport &T)
 Transport	datatransport.h	/^class Transport{$/;"	c	namespace:net
-_BASE_PACKET__	packet.h	2;"	d
+_BASE_PACKET__	Ipacket.h	2;"	d
 _CONNECTION_	connection.h	2;"	d
 _CONNECTION_MANAGER	connectionmanager.h	2;"	d
+_SERVER_HANDLER_	serverhandler.h	2;"	d
 _SOCKET_STREAM__	datastream.h	2;"	d
 _addr	connection.h	/^		struct sockaddr _addr;$/;"	m	class:net::Connection	typeref:struct:net::Connection::sockaddr	access:private
 _addr_len	connection.h	/^		size_t _addr_len;$/;"	m	class:net::Connection	access:private
-_buf	packet.h	/^			char *_buf;$/;"	m	class:net::Packet	access:private
+_commondQueue	datatransport.h	/^		CommondQueue *_commondQueue;$/;"	m	class:net::Transport	access:private
+_con	Ipacket.h	/^		Connection *_con;$/;"	m	class:net::IPacket	access:private
 _con	netevent.h	/^		Connection *_con = NULL;$/;"	m	class:net::NetReadCommond	access:private
-_con	netevent.h	/^		Connection *_con = NULL;$/;"	m	class:net::NetWriteCommond	access:private
 _con	tcpsocketevent.h	/^		Connection *_con = NULL;$/;"	m	class:net::TcpSocketEvent	access:private
 _conhashtable	connectionmanager.h	/^		HashCollection _conhashtable;$/;"	m	class:net::ConnectionManager	access:private
 _conlist	connectionmanager.h	/^		ListCollection _conlist;$/;"	m	class:net::ConnectionManager	access:private
-_data_len	packet.h	/^			size_t _data_len;$/;"	m	class:net::PacketHeader	access:public
+_data_len	Ipacket.h	/^		size_t _data_len;$/;"	m	class:net::PacketHeader	access:public
+_defaultstream	datatransport.h	/^		DataStream *_defaultstream;$/;"	m	class:net::Transport	access:private
 _err	connection.h	/^		bool _err = false;$/;"	m	class:net::Connection	access:private
-_err	tcpsocketevent.h	/^		bool _err = false;$/;"	m	class:net::TcpSocketEvent	access:private
+_errThread	datatransport.h	/^		TaskQueueThread *_errThread;$/;"	m	class:net::Transport	access:private
+_factory	serverhandler.h	/^		IFactory *_factory;$/;"	m	class:net::ServerHandler	access:private
 _fd	connection.h	/^		int _fd;$/;"	m	class:net::Connection	access:private
+_head	Ipacket.h	/^		PacketHeader _head;$/;"	m	class:net::IPacket	access:private
 _head	listensocketevent.h	/^		ListenEvent *_head;$/;"	m	class:net::ListenEventQueue	access:private
-_head	packet.h	/^			PacketHeader _head;$/;"	m	class:net::Packet	access:public
-_head	tcpsocketevent.h	/^		TcpSocketEvent *_head;$/;"	m	class:net::TcpSocketQueue	access:private
-_headready	packet.h	/^			bool _headready = false;$/;"	m	class:net::Packet	access:public
 _len	listensocketevent.h	/^		int _len;$/;"	m	class:net::ListenEventQueue	access:private
-_len	packet.h	/^			size_t _len;$/;"	m	class:net::Packet	access:private
-_len	tcpsocketevent.h	/^		int _len;$/;"	m	class:net::TcpSocketQueue	access:private
 _needclose	connection.h	/^		bool _needclose = false;		$/;"	m	class:net::Connection	access:private
-_needclose	tcpsocketevent.h	/^		bool _needclose = false;$/;"	m	class:net::TcpSocketEvent	access:private
-_next	packet.h	/^			Packet *_next;$/;"	m	class:net::Packet	access:private
-_pos	packet.h	/^			size_t _pos;			$/;"	m	class:net::Packet	access:private
+_out	netevent.h	/^		IPacket *_out =NULL;$/;"	m	class:net::NetWriteCommond	access:private
+_readQueue	datatransport.h	/^		PacketQueue *_readQueue;$/;"	m	class:net::Transport	access:private
 _readable	connection.h	/^		bool _readable = false;$/;"	m	class:net::Connection	access:private
 _readbuf	connection.h	/^		MemBuffer *_readbuf;$/;"	m	class:net::Connection	access:private
+_readlock	connection.h	/^		Lock _readlock;$/;"	m	class:net::Connection	access:private
+_readwriteThread	datatransport.h	/^		TaskQueueThread *_readwriteThread;$/;"	m	class:net::Transport	access:private
 _socket	connection.h	/^		class Socket *_socket;$/;"	m	class:net::Connection	typeref:class:net::Connection::Socket	access:private
-_streamer	connection.h	/^		class SocketStream *_streamer;				$/;"	m	class:net::Connection	typeref:class:net::Connection::SocketStream	access:private
+_stream	datatransport.h	/^		DataStream *_stream = NULL;$/;"	m	class:net::Transport	access:private
+_streamer	connection.h	/^		DataStream *_streamer;			$/;"	m	class:net::Connection	access:private
 _tail	listensocketevent.h	/^		ListenEvent *_tail;$/;"	m	class:net::ListenEventQueue	access:private
-_tail	tcpsocketevent.h	/^		TcpSocketEvent *_tail;$/;"	m	class:net::TcpSocketQueue	access:private
+_writeQueue	datatransport.h	/^		PacketQueue *_writeQueue;$/;"	m	class:net::Transport	access:private
 _writeable	connection.h	/^		bool _writeable = false;$/;"	m	class:net::Connection	access:private
 _writebuf	connection.h	/^		MemBuffer *_writebuf;		$/;"	m	class:net::Connection	access:private
+_writelock	connection.h	/^		Lock _writelock;$/;"	m	class:net::Connection	access:private
 accept	serversocket.cpp	/^int ServerSocket::accept()$/;"	f	class:net::ServerSocket	signature:()
 accept	serversocket.h	/^		int accept();$/;"	p	class:net::ServerSocket	access:public	signature:()
 add	listensocketevent.cpp	/^void ListenEventQueue::add(ListenEvent *T)$/;"	f	class:net::ListenEventQueue	signature:(ListenEvent *T)
 add	listensocketevent.h	/^		void add(ListenEvent *T);$/;"	p	class:net::ListenEventQueue	access:public	signature:(ListenEvent *T)
-add	tcpsocketevent.cpp	/^void TcpSocketQueue::add(TcpSocketEvent *T)$/;"	f	class:net::TcpSocketQueue	signature:(TcpSocketEvent *T)
-add	tcpsocketevent.h	/^		void add(TcpSocketEvent *T);$/;"	p	class:net::TcpSocketQueue	access:public	signature:(TcpSocketEvent *T)
-addBack	packetqueue.cpp	/^void PacketQueue::addBack(Packet *p)$/;"	f	class:net::PacketQueue	signature:(Packet *p)
-addBack	packetqueue.h	/^		void addBack(class Packet *p);$/;"	p	class:net::PacketQueue	access:public	signature:(class Packet *p)
 addConnection	connectionmanager.cpp	/^void ConnectionManager::addConnection(Connection *con)$/;"	f	class:net::ConnectionManager	signature:(Connection *con)
 addConnection	connectionmanager.h	/^		void addConnection(Connection *con);$/;"	p	class:net::ConnectionManager	access:public	signature:(Connection *con)
-addFront	packetqueue.cpp	/^void PacketQueue::addFront(Packet *p)$/;"	f	class:net::PacketQueue	signature:(Packet *p)
-addFront	packetqueue.h	/^		void addFront(class Packet *p);$/;"	p	class:net::PacketQueue	access:public	signature:(class Packet *p)
-allocMem	packet.cpp	/^	void Packet::allocMem(size_t size)$/;"	f	class:net::Packet	signature:(size_t size)
-allocMem	packet.h	/^			void allocMem(size_t size);$/;"	p	class:net::Packet	access:public	signature:(size_t size)
+allocMem	Ipacket.h	/^		void allocMem(size_t size);$/;"	p	class:net::IPacket	access:public	signature:(size_t size)
 closeSocket	socket.cpp	/^bool Socket::closeSocket()$/;"	f	class:net::Socket	signature:()
 closeSocket	socket.h	/^		bool closeSocket();$/;"	p	class:net::Socket	access:public	signature:()
 createByAddr	clientsocket.cpp	/^bool ClientSocket::createByAddr(const char* addr, const int port)$/;"	f	class:net::ClientSocket	signature:(const char* addr, const int port)
 createByAddr	clientsocket.h	/^		bool createByAddr(const char* addr, const int port);$/;"	p	class:net::ClientSocket	access:public	signature:(const char* addr, const int port)
-createNetReadCommond	factory.cpp	/^NetReadCommond* Factory::createNetReadCommond(Connection *con)$/;"	f	class:Factory	signature:(Connection *con)
-createNetReadCommond	factory.h	/^		NetReadCommond* createNetReadCommond(Connection *con);$/;"	p	class:Factory	access:public	signature:(Connection *con)
-createNetReadCommond	factory.h	/^		virtual NetReadCommond* createNetReadCommond(Connection *con)=0;$/;"	p	class:IFactory	access:public	signature:(Connection *con)
-createNetWriteCommond	factory.cpp	/^NetWriteCommond* Factory::createNetWriteCommond(Connection *con)$/;"	f	class:Factory	signature:(Connection *con)
-createNetWriteCommond	factory.h	/^		NetWriteCommond* createNetWriteCommond(Connection *con);$/;"	p	class:Factory	access:public	signature:(Connection *con)
-createNetWriteCommond	factory.h	/^		virtual NetWriteCommond* createNetWriteCommond(Connection *con)=0;$/;"	p	class:IFactory	access:public	signature:(Connection *con)
-createPacket	factory.cpp	/^Packet* Factory::createPacket()$/;"	f	class:Factory	signature:()
-createPacket	factory.h	/^		Packet* createPacket();$/;"	p	class:Factory	access:public	signature:()
-createPacket	factory.h	/^		virtual Packet* createPacket()=0;$/;"	p	class:IFactory	access:public	signature:()
+createRequest	factory.cpp	/^IPacket* EchoFactory::createRequest()$/;"	f	class:EchoFactory	signature:()
+createRequest	factory.h	/^		IPacket* createRequest();$/;"	p	class:EchoFactory	access:public	signature:()
+createRequest	factory.h	/^		virtual IPacket* createRequest() = 0;$/;"	p	class:IFactory	access:public	signature:()
+createResponse	factory.cpp	/^IPacket* EchoFactory::createResponse()$/;"	f	class:EchoFactory	signature:()
+createResponse	factory.h	/^		IPacket* createResponse();$/;"	p	class:EchoFactory	access:public	signature:()
+createResponse	factory.h	/^		virtual IPacket* createResponse() = 0;$/;"	p	class:IFactory	access:public	signature:()
 createSocket	socket.cpp	/^bool Socket::createSocket(int family, int type, int protocol)$/;"	f	class:net::Socket	signature:(int family, int type, int protocol)
 createSocket	socket.h	/^		bool createSocket(int family, int type, int protocol);$/;"	p	class:net::Socket	access:public	signature:(int family, int type, int protocol)
 createSocketAndListen	serversocket.cpp	/^bool ServerSocket::createSocketAndListen(const int port, int blacklog)$/;"	f	class:net::ServerSocket	signature:(const int port, int blacklog)
 createSocketAndListen	serversocket.h	/^		bool createSocketAndListen(const int port, int backlog = 1024);$/;"	p	class:net::ServerSocket	access:public	signature:(const int port, int backlog = 1024)
-decodeToPacket	datastream.h	/^			bool decodeToPacket(const MemBuffer* in, Packet *p);$/;"	p	class:net::DataStream	access:public	signature:(const MemBuffer* in, Packet *p)
+data	Ipacket.h	/^		MemBuffer *data;$/;"	m	class:net::NormalPacket	access:private
+decode	connection.cpp	/^void Connection::decode(){$/;"	f	class:net::Connection	signature:()
+decode	connection.h	/^		void decode();	$/;"	p	class:net::Connection	access:public	signature:()
+decodeToPacket	datastream.cpp	/^IPacket* NormalDataStream::decodeToPacket(const MemBuffer *in)$/;"	f	class:net::NormalDataStream	signature:(const MemBuffer *in)
+decodeToPacket	datastream.h	/^		virtual IPacket* decodeToPacket(const MemBuffer* in) = 0;$/;"	p	class:net::DataStream	access:public	signature:(const MemBuffer* in)
+decodeToPacket	datastream.h	/^		virtual IPacket* decodeToPacket(const MemBuffer* in);$/;"	p	class:net::NormalDataStream	access:public	signature:(const MemBuffer* in)
 disableNoDelay	socket.cpp	/^bool Socket::disableNoDelay()$/;"	f	class:net::Socket	signature:()
 disableNoDelay	socket.h	/^		bool disableNoDelay();$/;"	p	class:net::Socket	access:public	signature:()
 dispatchEvent	neteventdriver.cpp	/^void NetEventDriver::dispatchEvent(struct epoll_event &activeEvent)$/;"	f	class:net::NetEventDriver	signature:(struct epoll_event &activeEvent)
 dispatchEvent	neteventdriver.h	/^		virtual void dispatchEvent(struct epoll_event &activeEvent);$/;"	p	class:net::NetEventDriver	access:public	signature:(struct epoll_event &activeEvent)
+doHandlePacket	serverhandler.h	/^		virtual void doHandlePacket(IPacket *request, IPacket *response) = 0;$/;"	p	class:net::ServerHandler	access:protected	signature:(IPacket *request, IPacket *response)
 enableNoDelay	socket.cpp	/^bool Socket::enableNoDelay()$/;"	f	class:net::Socket	signature:()
 enableNoDelay	socket.h	/^		bool enableNoDelay();$/;"	p	class:net::Socket	access:public	signature:()
-encodeToStream	datastream.h	/^			void encodeToStream(MemBuffer* out, const Packet *p);$/;"	p	class:net::DataStream	access:public	signature:(MemBuffer* out, const Packet *p)
-errThread	datatransport.h	/^		TaskQueueThread *errThread;$/;"	m	class:net::Transport	access:private
+encode	connection.cpp	/^void Connection::encode(const IPacket *p){$/;"	f	class:net::Connection	signature:(const IPacket *p)
+encode	connection.h	/^		void encode(const IPacket *p);$/;"	p	class:net::Connection	access:public	signature:(const IPacket *p)
+encodeToStream	datastream.cpp	/^void NormalDataStream::encodeToStream(MemBuffer *out, const IPacket *p)$/;"	f	class:net::NormalDataStream	signature:(MemBuffer *out, const IPacket *p)
+encodeToStream	datastream.h	/^		virtual void encodeToStream(MemBuffer* out, const IPacket *p) = 0;$/;"	p	class:net::DataStream	access:public	signature:(MemBuffer* out, const IPacket *p)
+encodeToStream	datastream.h	/^		virtual void encodeToStream(MemBuffer* out, const IPacket *p);$/;"	p	class:net::NormalDataStream	access:public	signature:(MemBuffer* out, const IPacket *p)
 eventHandler	listensocketevent.cpp	/^void ListenEvent::eventHandler(struct epoll_event &ev)$/;"	f	class:net::ListenEvent	signature:(struct epoll_event &ev)
 eventHandler	listensocketevent.h	/^		virtual void eventHandler(struct epoll_event &ev);$/;"	p	class:net::ListenEvent	access:public	signature:(struct epoll_event &ev)
 eventHandler	tcpsocketevent.cpp	/^void TcpSocketEvent::eventHandler(struct epoll_event &ev)$/;"	f	class:net::TcpSocketEvent	signature:(struct epoll_event &ev)
 eventHandler	tcpsocketevent.h	/^		virtual void eventHandler(struct epoll_event &ev);$/;"	p	class:net::TcpSocketEvent	access:public	signature:(struct epoll_event &ev)
 find	listensocketevent.cpp	/^ListenEvent* ListenEventQueue::find(int fd)$/;"	f	class:net::ListenEventQueue	signature:(int fd)
 find	listensocketevent.h	/^		ListenEvent *find(int fd);$/;"	p	class:net::ListenEventQueue	access:public	signature:(int fd)
-find	tcpsocketevent.cpp	/^TcpSocketEvent* TcpSocketQueue::find(int fd)$/;"	f	class:net::TcpSocketQueue	signature:(int fd)
-find	tcpsocketevent.h	/^		TcpSocketEvent* find(int fd);$/;"	p	class:net::TcpSocketQueue	access:public	signature:(int fd)
 findConByKey	connectionmanager.cpp	/^Connection* ConnectionManager::findConByKey(int fd)$/;"	f	class:net::ConnectionManager	signature:(int fd)
 findConByKey	connectionmanager.h	/^		Connection *findConByKey(int fd);$/;"	p	class:net::ConnectionManager	access:public	signature:(int fd)
 front	listensocketevent.h	/^		ListenEvent *front(){$/;"	f	class:net::ListenEventQueue	access:public	signature:()
-front	tcpsocketevent.h	/^		TcpSocketEvent* front(){$/;"	f	class:net::TcpSocketQueue	access:public	signature:()
-getBack	packetqueue.cpp	/^Packet* PacketQueue::getBack()$/;"	f	class:net::PacketQueue	signature:()
-getBack	packetqueue.h	/^		class Packet* getBack();$/;"	p	class:net::PacketQueue	access:public	signature:()
+getCommondQueue	datatransport.h	/^		CommondQueue *getCommondQueue(){$/;"	f	class:net::Transport	access:public	signature:()
 getConnect	clientsocket.cpp	/^Connection* ClientSocket::getConnect()$/;"	f	class:net::ClientSocket	signature:()
 getConnect	clientsocket.h	/^		class Connection * getConnect();$/;"	p	class:net::ClientSocket	access:public	signature:()
+getConnection	Ipacket.h	/^		Connection *getConnection(){$/;"	f	class:net::IPacket	access:public	signature:()
+getConnection	netevent.h	/^		Connection *getConnection(){$/;"	f	class:net::NetReadCommond	access:public	signature:()
 getErr	connection.h	/^		bool getErr(){$/;"	f	class:net::Connection	access:public	signature:()
 getErrThread	datatransport.h	/^		TaskQueueThread *getErrThread(){$/;"	f	class:net::Transport	access:public	signature:()
-getFront	packetqueue.cpp	/^Packet* PacketQueue::getFront()$/;"	f	class:net::PacketQueue	signature:()
-getFront	packetqueue.h	/^		class Packet* getFront();$/;"	p	class:net::PacketQueue	access:public	signature:()
 getHandle	connection.h	/^		int getHandle(){return _fd;}$/;"	f	class:net::Connection	access:public	signature:()
 getNeedClose	connection.h	/^		bool getNeedClose(){$/;"	f	class:net::Connection	access:public	signature:()
 getNext	listensocketevent.h	/^		ListenEvent* getNext(){$/;"	f	class:net::ListenEvent	access:public	signature:()
-getNext	tcpsocketevent.h	/^		TcpSocketEvent* getNext()$/;"	f	class:net::TcpSocketEvent	access:public	signature:()
+getPacket	netevent.h	/^		IPacket *getPacket(){$/;"	f	class:net::NetWriteCommond	access:public	signature:()
 getPeer	socket.cpp	/^bool Socket::getPeer(char *ip, size_t ip_len, int *port) {$/;"	f	class:net::Socket	signature:(char *ip, size_t ip_len, int *port)
 getPeer	socket.h	/^		bool getPeer(char *ip, size_t ip_len, int *port);$/;"	p	class:net::Socket	access:public	signature:(char *ip, size_t ip_len, int *port)
-getReadCommondQueue	datatransport.h	/^		CommondQueue *getReadCommondQueue(){$/;"	f	class:net::Transport	access:public	signature:()
 getReadPacketQueue	datatransport.h	/^		PacketQueue *getReadPacketQueue(){$/;"	f	class:net::Transport	access:public	signature:()
-getReadThread	datatransport.h	/^		TaskQueueThread *getReadThread(){$/;"	f	class:net::Transport	access:public	signature:()
 getReadable	connection.h	/^		bool getReadable(){$/;"	f	class:net::Connection	access:public	signature:()
+getSendBuffer	socket.cpp	/^int Socket::getSendBuffer()$/;"	f	class:net::Socket	signature:()
+getSendBuffer	socket.h	/^		int getSendBuffer();$/;"	p	class:net::Socket	access:public	signature:()
 getSockName	socket.cpp	/^bool Socket::getSockName(char *ip, size_t ip_len, int *port) {$/;"	f	class:net::Socket	signature:(char *ip, size_t ip_len, int *port)
 getSockName	socket.h	/^		bool getSockName(char *ip, size_t ip_len, int *port);$/;"	p	class:net::Socket	access:public	signature:(char *ip, size_t ip_len, int *port)
 getSocketHandle	socket.h	/^		int getSocketHandle(){return sock_fd;}$/;"	f	class:net::Socket	access:public	signature:()
-getWriteCommondQueue	datatransport.h	/^		CommondQueue *getWriteCommondQueue(){$/;"	f	class:net::Transport	access:public	signature:()
+getStream	datatransport.h	/^		DataStream *getStream(){$/;"	f	class:net::Transport	access:public	signature:()
+getText	Ipacket.h	/^		MemBuffer* getText(){$/;"	f	class:net::NormalPacket	access:public	signature:()
+getThread	datatransport.h	/^		TaskQueueThread *getThread(){$/;"	f	class:net::Transport	access:public	signature:()
 getWritePacketQueue	datatransport.h	/^		PacketQueue *getWritePacketQueue(){$/;"	f	class:net::Transport	access:public	signature:()
-getWriteThread	datatransport.h	/^		TaskQueueThread *getWriteThread(){$/;"	f	class:net::Transport	access:public	signature:()
 getWriteable	connection.h	/^		bool getWriteable(){$/;"	f	class:net::Connection	access:public	signature:()
 handleConEvent	listensocketevent.cpp	/^void ListenEvent::handleConEvent(int fd)$/;"	f	class:net::ListenEvent	signature:(int fd)
 handleConEvent	listensocketevent.h	/^		void handleConEvent(int fd);$/;"	p	class:net::ListenEvent	access:private	signature:(int fd)
 handleConnectEvent	listensocketevent.h	/^		void handleConnectEvent();$/;"	p	class:net::ListenEvent	access:public	signature:()
+handlerPacket	serverhandler.h	/^		void handlerPacket(IPacket *request, IPacket **response) ;$/;"	p	class:net::ServerHandler	access:public	signature:(IPacket *request, IPacket **response)
 hostname	serversocket.h	/^		char *hostname;$/;"	m	class:net::ServerSocket	access:protected
 instance	connectionmanager.cpp	/^ConnectionManager& ConnectionManager::instance()$/;"	f	class:net::ConnectionManager	signature:()
 instance	connectionmanager.h	/^		static ConnectionManager& instance();$/;"	p	class:net::ConnectionManager	access:public	signature:()
 instance	datatransport.h	/^		static Transport& instance(){$/;"	f	class:net::Transport	access:public	signature:()
 instance	listensocketevent.h	/^		static ListenEventQueue& instance(){$/;"	f	class:net::ListenEventQueue	access:public	signature:()
 instance	neteventdriver.h	/^		static NetEventDriver& instance(){$/;"	f	class:net::NetEventDriver	access:public	signature:()
-instance	tcpsocketevent.h	/^		static TcpSocketQueue& instance(){$/;"	f	class:net::TcpSocketQueue	access:public	signature:()
-isEmpty	packetqueue.cpp	/^bool PacketQueue::isEmpty()$/;"	f	class:net::PacketQueue	signature:()
-isEmpty	packetqueue.h	/^		bool isEmpty();$/;"	p	class:net::PacketQueue	access:public	signature:()
 keepLive	socket.cpp	/^int Socket::keepLive(int interval)$/;"	f	class:net::Socket	signature:(int interval)
 keepLive	socket.h	/^		int keepLive(int interval=7200);$/;"	p	class:net::Socket	access:public	signature:(int interval=7200)
 local_address	serversocket.h	/^		struct sockaddr_in  local_address;	$/;"	m	class:net::ServerSocket	typeref:struct:net::ServerSocket::sockaddr_in	access:protected
-mPacketList	packetqueue.h	/^		Collection mPacketList;$/;"	m	class:net::PacketQueue	access:private
 main	main.cpp	/^int main()$/;"	f	signature:()
-mempool	main.cpp	/^		static Mempool<packet> *mempool;$/;"	m	class:packet	file:	access:public
-mempool	main.cpp	/^Mempool<packet> *packet::mempool = NULL;$/;"	m	class:packet	file:
-mythread	main.cpp	/^class mythread : public sys::Thread$/;"	c	file:	inherits:sys::Thread
-mythread::run	main.cpp	/^	void run()$/;"	f	class:mythread	file:	access:private	signature:()
+net	Ipacket.cpp	/^namespace net{$/;"	n	file:
+net	Ipacket.h	/^namespace net{$/;"	n
 net	clientsocket.cpp	/^namespace net{$/;"	n	file:
 net	clientsocket.h	/^namespace net{$/;"	n
 net	connection.cpp	/^namespace net{$/;"	n	file:
@@ -256,10 +241,7 @@ net	netevent.cpp	/^namespace net{$/;"	n	file:
 net	netevent.h	/^namespace net{$/;"	n
 net	neteventdriver.cpp	/^namespace net{$/;"	n	file:
 net	neteventdriver.h	/^namespace net{$/;"	n
-net	packet.cpp	/^namespace net{$/;"	n	file:
-net	packet.h	/^namespace net{$/;"	n
-net	packetqueue.cpp	/^namespace net{$/;"	n	file:
-net	packetqueue.h	/^namespace net{$/;"	n
+net	serverhandler.h	/^namespace net{$/;"	n
 net	serversocket.cpp	/^namespace net{$/;"	n	file:
 net	serversocket.h	/^namespace net{$/;"	n
 net	socket.cpp	/^namespace net{$/;"	n	file:
@@ -292,17 +274,23 @@ net::Connection::_fd	connection.h	/^		int _fd;$/;"	m	class:net::Connection	acces
 net::Connection::_needclose	connection.h	/^		bool _needclose = false;		$/;"	m	class:net::Connection	access:private
 net::Connection::_readable	connection.h	/^		bool _readable = false;$/;"	m	class:net::Connection	access:private
 net::Connection::_readbuf	connection.h	/^		MemBuffer *_readbuf;$/;"	m	class:net::Connection	access:private
+net::Connection::_readlock	connection.h	/^		Lock _readlock;$/;"	m	class:net::Connection	access:private
 net::Connection::_socket	connection.h	/^		class Socket *_socket;$/;"	m	class:net::Connection	typeref:class:net::Connection::Socket	access:private
-net::Connection::_streamer	connection.h	/^		class SocketStream *_streamer;				$/;"	m	class:net::Connection	typeref:class:net::Connection::SocketStream	access:private
+net::Connection::_streamer	connection.h	/^		DataStream *_streamer;			$/;"	m	class:net::Connection	access:private
 net::Connection::_writeable	connection.h	/^		bool _writeable = false;$/;"	m	class:net::Connection	access:private
 net::Connection::_writebuf	connection.h	/^		MemBuffer *_writebuf;		$/;"	m	class:net::Connection	access:private
+net::Connection::_writelock	connection.h	/^		Lock _writelock;$/;"	m	class:net::Connection	access:private
+net::Connection::decode	connection.cpp	/^void Connection::decode(){$/;"	f	class:net::Connection	signature:()
+net::Connection::decode	connection.h	/^		void decode();	$/;"	p	class:net::Connection	access:public	signature:()
+net::Connection::encode	connection.cpp	/^void Connection::encode(const IPacket *p){$/;"	f	class:net::Connection	signature:(const IPacket *p)
+net::Connection::encode	connection.h	/^		void encode(const IPacket *p);$/;"	p	class:net::Connection	access:public	signature:(const IPacket *p)
 net::Connection::getErr	connection.h	/^		bool getErr(){$/;"	f	class:net::Connection	access:public	signature:()
 net::Connection::getHandle	connection.h	/^		int getHandle(){return _fd;}$/;"	f	class:net::Connection	access:public	signature:()
 net::Connection::getNeedClose	connection.h	/^		bool getNeedClose(){$/;"	f	class:net::Connection	access:public	signature:()
 net::Connection::getReadable	connection.h	/^		bool getReadable(){$/;"	f	class:net::Connection	access:public	signature:()
 net::Connection::getWriteable	connection.h	/^		bool getWriteable(){$/;"	f	class:net::Connection	access:public	signature:()
 net::Connection::prepare	connection.cpp	/^void Connection::prepare(DataStream *ss)$/;"	f	class:net::Connection	signature:(DataStream *ss)
-net::Connection::prepare	connection.h	/^		void prepare(PacketQueue *in, PacketQueue *out);$/;"	p	class:net::Connection	access:public	signature:(PacketQueue *in, PacketQueue *out)
+net::Connection::prepare	connection.h	/^		void prepare(DataStream *ss);$/;"	p	class:net::Connection	access:public	signature:(DataStream *ss)
 net::Connection::readData	connection.cpp	/^void Connection::readData()$/;"	f	class:net::Connection	signature:()
 net::Connection::readData	connection.h	/^		void readData();$/;"	p	class:net::Connection	access:public	signature:()
 net::Connection::setAddress	connection.cpp	/^void Connection::setAddress(sockaddr *addr, size_t addrlen)$/;"	f	class:net::Connection	signature:(sockaddr *addr, size_t addrlen)
@@ -345,14 +333,23 @@ net::ConnectionManager::self	connectionmanager.cpp	/^ConnectionManager* Connecti
 net::ConnectionManager::self	connectionmanager.h	/^		static ConnectionManager *self;$/;"	m	class:net::ConnectionManager	access:private
 net::ConnectionManager::~ConnectionManager	connectionmanager.cpp	/^ConnectionManager::~ConnectionManager()$/;"	f	class:net::ConnectionManager	signature:()
 net::ConnectionManager::~ConnectionManager	connectionmanager.h	/^		~ConnectionManager();$/;"	p	class:net::ConnectionManager	access:private	signature:()
-net::DataStream	datastream.h	/^	class DataStream{$/;"	c	namespace:net
+net::DataStream	datastream.h	/^class DataStream{$/;"	c	namespace:net
 net::DataStream::DataStream	datastream.cpp	/^DataStream::DataStream()$/;"	f	class:net::DataStream	signature:()
-net::DataStream::DataStream	datastream.h	/^			DataStream();$/;"	p	class:net::DataStream	access:public	signature:()
-net::DataStream::decodeToPacket	datastream.h	/^			bool decodeToPacket(const MemBuffer* in, Packet *p);$/;"	p	class:net::DataStream	access:public	signature:(const MemBuffer* in, Packet *p)
-net::DataStream::encodeToStream	datastream.h	/^			void encodeToStream(MemBuffer* out, const Packet *p);$/;"	p	class:net::DataStream	access:public	signature:(MemBuffer* out, const Packet *p)
-net::DataStream::writeFromPacket	datastream.cpp	/^bool DataStream::writeFromPacket(PacketQueue* queue)$/;"	f	class:net::DataStream	signature:(PacketQueue* queue)
+net::DataStream::DataStream	datastream.h	/^		DataStream();$/;"	p	class:net::DataStream	access:public	signature:()
+net::DataStream::decodeToPacket	datastream.h	/^		virtual IPacket* decodeToPacket(const MemBuffer* in) = 0;$/;"	p	class:net::DataStream	access:public	signature:(const MemBuffer* in)
+net::DataStream::encodeToStream	datastream.h	/^		virtual void encodeToStream(MemBuffer* out, const IPacket *p) = 0;$/;"	p	class:net::DataStream	access:public	signature:(MemBuffer* out, const IPacket *p)
 net::DataStream::~DataStream	datastream.cpp	/^DataStream::~DataStream()$/;"	f	class:net::DataStream	signature:()
-net::DataStream::~DataStream	datastream.h	/^			virtual ~DataStream();$/;"	p	class:net::DataStream	access:public	signature:()
+net::DataStream::~DataStream	datastream.h	/^		virtual ~DataStream();$/;"	p	class:net::DataStream	access:public	signature:()
+net::IPacket	Ipacket.h	/^class IPacket$/;"	c	namespace:net
+net::IPacket::IPacket	Ipacket.cpp	/^IPacket::IPacket()$/;"	f	class:net::IPacket	signature:()
+net::IPacket::IPacket	Ipacket.h	/^		IPacket();$/;"	p	class:net::IPacket	access:public	signature:()
+net::IPacket::_con	Ipacket.h	/^		Connection *_con;$/;"	m	class:net::IPacket	access:private
+net::IPacket::_head	Ipacket.h	/^		PacketHeader _head;$/;"	m	class:net::IPacket	access:private
+net::IPacket::allocMem	Ipacket.h	/^		void allocMem(size_t size);$/;"	p	class:net::IPacket	access:public	signature:(size_t size)
+net::IPacket::getConnection	Ipacket.h	/^		Connection *getConnection(){$/;"	f	class:net::IPacket	access:public	signature:()
+net::IPacket::setConnection	Ipacket.h	/^		void setConnection(const Connection *con){$/;"	f	class:net::IPacket	access:public	signature:(const Connection *con)
+net::IPacket::~IPacket	Ipacket.cpp	/^IPacket::~IPacket()$/;"	f	class:net::IPacket	signature:()
+net::IPacket::~IPacket	Ipacket.h	/^		virtual ~IPacket();$/;"	p	class:net::IPacket	access:public	signature:()
 net::ListenEvent	listensocketevent.h	/^class ListenEvent : public EventDescripter{$/;"	c	namespace:net	inherits:EventDescripter
 net::ListenEvent::ListenEvent	listensocketevent.cpp	/^ListenEvent::ListenEvent(int fd, uint32_t eventtype):$/;"	f	class:net::ListenEvent	signature:(int fd, uint32_t eventtype)
 net::ListenEvent::ListenEvent	listensocketevent.h	/^		ListenEvent(const ListenEvent &T);$/;"	p	class:net::ListenEvent	access:private	signature:(const ListenEvent &T)
@@ -400,59 +397,43 @@ net::NetEventDriver::~NetEventDriver	neteventdriver.cpp	/^NetEventDriver::~NetEv
 net::NetEventDriver::~NetEventDriver	neteventdriver.h	/^		~NetEventDriver();$/;"	p	class:net::NetEventDriver	access:public	signature:()
 net::NetReadCommond	netevent.h	/^class NetReadCommond : public Commond{$/;"	c	namespace:net	inherits:Commond
 net::NetReadCommond::NetReadCommond	netevent.cpp	/^NetReadCommond::NetReadCommond(Connection *con)$/;"	f	class:net::NetReadCommond	signature:(Connection *con)
-net::NetReadCommond::NetReadCommond	netevent.h	/^		NetReadCommond(Connection *con);$/;"	p	class:net::NetReadCommond	access:public	signature:(Connection *con)
+net::NetReadCommond::NetReadCommond	netevent.h	/^		NetReadCommond(Connection *con = NULL);$/;"	p	class:net::NetReadCommond	access:public	signature:(Connection *con = NULL)
 net::NetReadCommond::_con	netevent.h	/^		Connection *_con = NULL;$/;"	m	class:net::NetReadCommond	access:private
+net::NetReadCommond::getConnection	netevent.h	/^		Connection *getConnection(){$/;"	f	class:net::NetReadCommond	access:public	signature:()
 net::NetReadCommond::onCommond	netevent.cpp	/^void NetReadCommond::onCommond()$/;"	f	class:net::NetReadCommond	signature:()
 net::NetReadCommond::onCommond	netevent.h	/^		virtual void onCommond();$/;"	p	class:net::NetReadCommond	access:public	signature:()
+net::NetReadCommond::setConnection	netevent.h	/^		void setConnection(Connection *con){$/;"	f	class:net::NetReadCommond	access:public	signature:(Connection *con)
 net::NetReadCommond::~NetReadCommond	netevent.cpp	/^NetReadCommond::~NetReadCommond()$/;"	f	class:net::NetReadCommond	signature:()
 net::NetReadCommond::~NetReadCommond	netevent.h	/^		~NetReadCommond();$/;"	p	class:net::NetReadCommond	access:public	signature:()
-net::NetReadQueue	netevent.h	/^typedef Queue<NetReadCommond> NetReadQueue;$/;"	t	namespace:net
-net::NetWriteCommond	netevent.h	/^class NetWriteCommond : public Commond$/;"	c	namespace:net	inherits:Commond
-net::NetWriteCommond::NetWriteCommond	netevent.cpp	/^NetWriteCommond::NetWriteCommond(Connection *con)$/;"	f	class:net::NetWriteCommond	signature:(Connection *con)
-net::NetWriteCommond::NetWriteCommond	netevent.h	/^		NetWriteCommond(Connection *con);$/;"	p	class:net::NetWriteCommond	access:public	signature:(Connection *con)
-net::NetWriteCommond::_con	netevent.h	/^		Connection *_con = NULL;$/;"	m	class:net::NetWriteCommond	access:private
+net::NetWriteCommond	netevent.h	/^class NetWriteCommond : public Commond{$/;"	c	namespace:net	inherits:Commond
+net::NetWriteCommond::NetWriteCommond	netevent.cpp	/^NetWriteCommond::NetWriteCommond(IPacket *p)$/;"	f	class:net::NetWriteCommond	signature:(IPacket *p)
+net::NetWriteCommond::NetWriteCommond	netevent.h	/^		NetWriteCommond(IPacket *p = NULL);$/;"	p	class:net::NetWriteCommond	access:public	signature:(IPacket *p = NULL)
+net::NetWriteCommond::_out	netevent.h	/^		IPacket *_out =NULL;$/;"	m	class:net::NetWriteCommond	access:private
+net::NetWriteCommond::getPacket	netevent.h	/^		IPacket *getPacket(){$/;"	f	class:net::NetWriteCommond	access:public	signature:()
 net::NetWriteCommond::onCommond	netevent.cpp	/^void NetWriteCommond::onCommond()$/;"	f	class:net::NetWriteCommond	signature:()
 net::NetWriteCommond::onCommond	netevent.h	/^		virtual void onCommond();$/;"	p	class:net::NetWriteCommond	access:public	signature:()
+net::NetWriteCommond::setPacket	netevent.h	/^		void setPacket(IPacket *p){$/;"	f	class:net::NetWriteCommond	access:public	signature:(IPacket *p)
 net::NetWriteCommond::~NetWriteCommond	netevent.cpp	/^NetWriteCommond::~NetWriteCommond()$/;"	f	class:net::NetWriteCommond	signature:()
 net::NetWriteCommond::~NetWriteCommond	netevent.h	/^		~NetWriteCommond();$/;"	p	class:net::NetWriteCommond	access:public	signature:()
-net::NetWriteQueue	netevent.h	/^typedef Queue<NetWriteCommond> NetWriteQueue;$/;"	t	namespace:net
-net::Packet	packet.h	/^	class Packet$/;"	c	namespace:net
-net::Packet::Packet	packet.cpp	/^	Packet::Packet(char *addr, size_t size):_buf(addr),_len(size),_pos(0),_next(NULL)$/;"	f	class:net::Packet	signature:(char *addr, size_t size)
-net::Packet::Packet	packet.h	/^			Packet(char* addr=NULL, size_t size=0);$/;"	p	class:net::Packet	access:public	signature:(char* addr=NULL, size_t size=0)
-net::Packet::_buf	packet.h	/^			char *_buf;$/;"	m	class:net::Packet	access:private
-net::Packet::_head	packet.h	/^			PacketHeader _head;$/;"	m	class:net::Packet	access:public
-net::Packet::_headready	packet.h	/^			bool _headready = false;$/;"	m	class:net::Packet	access:public
-net::Packet::_len	packet.h	/^			size_t _len;$/;"	m	class:net::Packet	access:private
-net::Packet::_next	packet.h	/^			Packet *_next;$/;"	m	class:net::Packet	access:private
-net::Packet::_pos	packet.h	/^			size_t _pos;			$/;"	m	class:net::Packet	access:private
-net::Packet::allocMem	packet.cpp	/^	void Packet::allocMem(size_t size)$/;"	f	class:net::Packet	signature:(size_t size)
-net::Packet::allocMem	packet.h	/^			void allocMem(size_t size);$/;"	p	class:net::Packet	access:public	signature:(size_t size)
-net::Packet::setByCommon	packet.cpp	/^	void Packet::setByCommon(char *addr, size_t size)$/;"	f	class:net::Packet	signature:(char *addr, size_t size)
-net::Packet::setByCommon	packet.h	/^			void setByCommon( char *addr, size_t size);$/;"	p	class:net::Packet	access:public	signature:( char *addr, size_t size)
-net::Packet::setNext	packet.h	/^			void setNext(Packet *n){_next = n;}	$/;"	f	class:net::Packet	access:public	signature:(Packet *n)
-net::Packet::~Packet	packet.cpp	/^	Packet::~Packet()$/;"	f	class:net::Packet	signature:()
-net::Packet::~Packet	packet.h	/^			virtual ~Packet();$/;"	p	class:net::Packet	access:public	signature:()
-net::PacketHeader	packet.h	/^	class PacketHeader{$/;"	c	namespace:net
-net::PacketHeader::_data_len	packet.h	/^			size_t _data_len;$/;"	m	class:net::PacketHeader	access:public
-net::PacketQueue	packetqueue.h	/^class PacketQueue : public Lock{$/;"	c	namespace:net	inherits:Lock
-net::PacketQueue::Collection	packetqueue.h	/^	typedef std::list<Packet*> Collection;$/;"	t	class:net::PacketQueue	access:private
-net::PacketQueue::PacketQueue	packetqueue.cpp	/^PacketQueue::PacketQueue()$/;"	f	class:net::PacketQueue	signature:()
-net::PacketQueue::PacketQueue	packetqueue.h	/^		PacketQueue();$/;"	p	class:net::PacketQueue	access:public	signature:()
-net::PacketQueue::addBack	packetqueue.cpp	/^void PacketQueue::addBack(Packet *p)$/;"	f	class:net::PacketQueue	signature:(Packet *p)
-net::PacketQueue::addBack	packetqueue.h	/^		void addBack(class Packet *p);$/;"	p	class:net::PacketQueue	access:public	signature:(class Packet *p)
-net::PacketQueue::addFront	packetqueue.cpp	/^void PacketQueue::addFront(Packet *p)$/;"	f	class:net::PacketQueue	signature:(Packet *p)
-net::PacketQueue::addFront	packetqueue.h	/^		void addFront(class Packet *p);$/;"	p	class:net::PacketQueue	access:public	signature:(class Packet *p)
-net::PacketQueue::getBack	packetqueue.cpp	/^Packet* PacketQueue::getBack()$/;"	f	class:net::PacketQueue	signature:()
-net::PacketQueue::getBack	packetqueue.h	/^		class Packet* getBack();$/;"	p	class:net::PacketQueue	access:public	signature:()
-net::PacketQueue::getFront	packetqueue.cpp	/^Packet* PacketQueue::getFront()$/;"	f	class:net::PacketQueue	signature:()
-net::PacketQueue::getFront	packetqueue.h	/^		class Packet* getFront();$/;"	p	class:net::PacketQueue	access:public	signature:()
-net::PacketQueue::isEmpty	packetqueue.cpp	/^bool PacketQueue::isEmpty()$/;"	f	class:net::PacketQueue	signature:()
-net::PacketQueue::isEmpty	packetqueue.h	/^		bool isEmpty();$/;"	p	class:net::PacketQueue	access:public	signature:()
-net::PacketQueue::mPacketList	packetqueue.h	/^		Collection mPacketList;$/;"	m	class:net::PacketQueue	access:private
-net::PacketQueue::size	packetqueue.cpp	/^size_t PacketQueue::size()$/;"	f	class:net::PacketQueue	signature:()
-net::PacketQueue::size	packetqueue.h	/^		size_t size();$/;"	p	class:net::PacketQueue	access:public	signature:()
-net::PacketQueue::~PacketQueue	packetqueue.cpp	/^PacketQueue::~PacketQueue()$/;"	f	class:net::PacketQueue	signature:()
-net::PacketQueue::~PacketQueue	packetqueue.h	/^		~PacketQueue();$/;"	p	class:net::PacketQueue	access:public	signature:()
+net::NormalDataStream	datastream.h	/^class NormalDataStream : public DataStream$/;"	c	namespace:net	inherits:DataStream
+net::NormalDataStream::decodeToPacket	datastream.cpp	/^IPacket* NormalDataStream::decodeToPacket(const MemBuffer *in)$/;"	f	class:net::NormalDataStream	signature:(const MemBuffer *in)
+net::NormalDataStream::decodeToPacket	datastream.h	/^		virtual IPacket* decodeToPacket(const MemBuffer* in);$/;"	p	class:net::NormalDataStream	access:public	signature:(const MemBuffer* in)
+net::NormalDataStream::encodeToStream	datastream.cpp	/^void NormalDataStream::encodeToStream(MemBuffer *out, const IPacket *p)$/;"	f	class:net::NormalDataStream	signature:(MemBuffer *out, const IPacket *p)
+net::NormalDataStream::encodeToStream	datastream.h	/^		virtual void encodeToStream(MemBuffer* out, const IPacket *p);$/;"	p	class:net::NormalDataStream	access:public	signature:(MemBuffer* out, const IPacket *p)
+net::NormalPacket	Ipacket.h	/^class NormalPacket : public IPacket$/;"	c	namespace:net	inherits:IPacket
+net::NormalPacket::NormalPacket	Ipacket.h	/^		NormalPacket()$/;"	f	class:net::NormalPacket	access:public	signature:()
+net::NormalPacket::data	Ipacket.h	/^		MemBuffer *data;$/;"	m	class:net::NormalPacket	access:private
+net::NormalPacket::getText	Ipacket.h	/^		MemBuffer* getText(){$/;"	f	class:net::NormalPacket	access:public	signature:()
+net::NormalPacket::~NormalPacket	Ipacket.h	/^		virtual ~NormalPacket(){$/;"	f	class:net::NormalPacket	access:public	signature:()
+net::PacketHeader	Ipacket.h	/^class PacketHeader{$/;"	c	namespace:net
+net::PacketHeader::_data_len	Ipacket.h	/^		size_t _data_len;$/;"	m	class:net::PacketHeader	access:public
+net::PacketQueue	Ipacket.h	/^typedef BlockQueue<IPacket> PacketQueue;$/;"	t	namespace:net
+net::ServerHandler	serverhandler.h	/^class ServerHandler$/;"	c	namespace:net
+net::ServerHandler::ServerHandler	serverhandler.h	/^		ServerHandler(IFactory* factory){$/;"	f	class:net::ServerHandler	access:public	signature:(IFactory* factory)
+net::ServerHandler::_factory	serverhandler.h	/^		IFactory *_factory;$/;"	m	class:net::ServerHandler	access:private
+net::ServerHandler::doHandlePacket	serverhandler.h	/^		virtual void doHandlePacket(IPacket *request, IPacket *response) = 0;$/;"	p	class:net::ServerHandler	access:protected	signature:(IPacket *request, IPacket *response)
+net::ServerHandler::handlerPacket	serverhandler.h	/^		void handlerPacket(IPacket *request, IPacket **response) ;$/;"	p	class:net::ServerHandler	access:public	signature:(IPacket *request, IPacket **response)
+net::ServerHandler::~ServerHandler	serverhandler.h	/^		virtual ~ServerHandler(){$/;"	f	class:net::ServerHandler	access:public	signature:()
 net::ServerSocket	serversocket.h	/^class ServerSocket : public Socket$/;"	c	namespace:net	inherits:Socket
 net::ServerSocket::ServerSocket	serversocket.cpp	/^ServerSocket::ServerSocket():Socket(),hostname(NULL)$/;"	f	class:net::ServerSocket	signature:()
 net::ServerSocket::ServerSocket	serversocket.h	/^		ServerSocket();$/;"	p	class:net::ServerSocket	access:public	signature:()
@@ -481,6 +462,8 @@ net::Socket::enableNoDelay	socket.cpp	/^bool Socket::enableNoDelay()$/;"	f	class
 net::Socket::enableNoDelay	socket.h	/^		bool enableNoDelay();$/;"	p	class:net::Socket	access:public	signature:()
 net::Socket::getPeer	socket.cpp	/^bool Socket::getPeer(char *ip, size_t ip_len, int *port) {$/;"	f	class:net::Socket	signature:(char *ip, size_t ip_len, int *port)
 net::Socket::getPeer	socket.h	/^		bool getPeer(char *ip, size_t ip_len, int *port);$/;"	p	class:net::Socket	access:public	signature:(char *ip, size_t ip_len, int *port)
+net::Socket::getSendBuffer	socket.cpp	/^int Socket::getSendBuffer()$/;"	f	class:net::Socket	signature:()
+net::Socket::getSendBuffer	socket.h	/^		int getSendBuffer();$/;"	p	class:net::Socket	access:public	signature:()
 net::Socket::getSockName	socket.cpp	/^bool Socket::getSockName(char *ip, size_t ip_len, int *port) {$/;"	f	class:net::Socket	signature:(char *ip, size_t ip_len, int *port)
 net::Socket::getSockName	socket.h	/^		bool getSockName(char *ip, size_t ip_len, int *port);$/;"	p	class:net::Socket	access:public	signature:(char *ip, size_t ip_len, int *port)
 net::Socket::getSocketHandle	socket.h	/^		int getSocketHandle(){return sock_fd;}$/;"	f	class:net::Socket	access:public	signature:()
@@ -509,61 +492,37 @@ net::TcpSocketEvent::TcpSocketEvent	tcpsocketevent.cpp	/^TcpSocketEvent::TcpSock
 net::TcpSocketEvent::TcpSocketEvent	tcpsocketevent.h	/^		TcpSocketEvent(const TcpSocketEvent &T);$/;"	p	class:net::TcpSocketEvent	access:private	signature:(const TcpSocketEvent &T)
 net::TcpSocketEvent::TcpSocketEvent	tcpsocketevent.h	/^		TcpSocketEvent(int fd, Connection *con=NULL, uint32_t eventtype= EPOLLIN | EPOLLOUT | EPOLLRDHUP | EPOLLET);$/;"	p	class:net::TcpSocketEvent	access:public	signature:(int fd, Connection *con=NULL, uint32_t eventtype= EPOLLIN | EPOLLOUT | EPOLLRDHUP | EPOLLET)
 net::TcpSocketEvent::_con	tcpsocketevent.h	/^		Connection *_con = NULL;$/;"	m	class:net::TcpSocketEvent	access:private
-net::TcpSocketEvent::_err	tcpsocketevent.h	/^		bool _err = false;$/;"	m	class:net::TcpSocketEvent	access:private
-net::TcpSocketEvent::_needclose	tcpsocketevent.h	/^		bool _needclose = false;$/;"	m	class:net::TcpSocketEvent	access:private
 net::TcpSocketEvent::eventHandler	tcpsocketevent.cpp	/^void TcpSocketEvent::eventHandler(struct epoll_event &ev)$/;"	f	class:net::TcpSocketEvent	signature:(struct epoll_event &ev)
 net::TcpSocketEvent::eventHandler	tcpsocketevent.h	/^		virtual void eventHandler(struct epoll_event &ev);$/;"	p	class:net::TcpSocketEvent	access:public	signature:(struct epoll_event &ev)
-net::TcpSocketEvent::getNext	tcpsocketevent.h	/^		TcpSocketEvent* getNext()$/;"	f	class:net::TcpSocketEvent	access:public	signature:()
-net::TcpSocketEvent::next	tcpsocketevent.h	/^		TcpSocketEvent *next = NULL;$/;"	m	class:net::TcpSocketEvent	access:private
 net::TcpSocketEvent::operator =	tcpsocketevent.h	/^		TcpSocketEvent& operator=(const TcpSocketEvent &T);$/;"	p	class:net::TcpSocketEvent	access:private	signature:(const TcpSocketEvent &T)
-net::TcpSocketEvent::setNext	tcpsocketevent.h	/^		void setNext(TcpSocketEvent *T){$/;"	f	class:net::TcpSocketEvent	access:public	signature:(TcpSocketEvent *T)
 net::TcpSocketEvent::~TcpSocketEvent	tcpsocketevent.cpp	/^TcpSocketEvent::~TcpSocketEvent()$/;"	f	class:net::TcpSocketEvent	signature:()
 net::TcpSocketEvent::~TcpSocketEvent	tcpsocketevent.h	/^		~TcpSocketEvent();$/;"	p	class:net::TcpSocketEvent	access:public	signature:()
-net::TcpSocketQueue	tcpsocketevent.h	/^class TcpSocketQueue$/;"	c	namespace:net
-net::TcpSocketQueue::TcpSocketQueue	tcpsocketevent.cpp	/^TcpSocketQueue::TcpSocketQueue():$/;"	f	class:net::TcpSocketQueue	signature:()
-net::TcpSocketQueue::TcpSocketQueue	tcpsocketevent.h	/^		TcpSocketQueue();$/;"	p	class:net::TcpSocketQueue	access:private	signature:()
-net::TcpSocketQueue::TcpSocketQueue	tcpsocketevent.h	/^		TcpSocketQueue(const TcpSocketQueue &T);$/;"	p	class:net::TcpSocketQueue	access:private	signature:(const TcpSocketQueue &T)
-net::TcpSocketQueue::_head	tcpsocketevent.h	/^		TcpSocketEvent *_head;$/;"	m	class:net::TcpSocketQueue	access:private
-net::TcpSocketQueue::_len	tcpsocketevent.h	/^		int _len;$/;"	m	class:net::TcpSocketQueue	access:private
-net::TcpSocketQueue::_tail	tcpsocketevent.h	/^		TcpSocketEvent *_tail;$/;"	m	class:net::TcpSocketQueue	access:private
-net::TcpSocketQueue::add	tcpsocketevent.cpp	/^void TcpSocketQueue::add(TcpSocketEvent *T)$/;"	f	class:net::TcpSocketQueue	signature:(TcpSocketEvent *T)
-net::TcpSocketQueue::add	tcpsocketevent.h	/^		void add(TcpSocketEvent *T);$/;"	p	class:net::TcpSocketQueue	access:public	signature:(TcpSocketEvent *T)
-net::TcpSocketQueue::find	tcpsocketevent.cpp	/^TcpSocketEvent* TcpSocketQueue::find(int fd)$/;"	f	class:net::TcpSocketQueue	signature:(int fd)
-net::TcpSocketQueue::find	tcpsocketevent.h	/^		TcpSocketEvent* find(int fd);$/;"	p	class:net::TcpSocketQueue	access:public	signature:(int fd)
-net::TcpSocketQueue::front	tcpsocketevent.h	/^		TcpSocketEvent* front(){$/;"	f	class:net::TcpSocketQueue	access:public	signature:()
-net::TcpSocketQueue::instance	tcpsocketevent.h	/^		static TcpSocketQueue& instance(){$/;"	f	class:net::TcpSocketQueue	access:public	signature:()
-net::TcpSocketQueue::operator =	tcpsocketevent.h	/^		TcpSocketQueue& operator=(const TcpSocketQueue &T);$/;"	p	class:net::TcpSocketQueue	access:private	signature:(const TcpSocketQueue &T)
-net::TcpSocketQueue::self	tcpsocketevent.cpp	/^TcpSocketQueue TcpSocketQueue::self;$/;"	m	class:net::TcpSocketQueue	file:
-net::TcpSocketQueue::self	tcpsocketevent.h	/^		static TcpSocketQueue self;$/;"	m	class:net::TcpSocketQueue	access:private
-net::TcpSocketQueue::~TcpSocketQueue	tcpsocketevent.cpp	/^TcpSocketQueue::~TcpSocketQueue()$/;"	f	class:net::TcpSocketQueue	signature:()
-net::TcpSocketQueue::~TcpSocketQueue	tcpsocketevent.h	/^		~TcpSocketQueue();$/;"	p	class:net::TcpSocketQueue	access:public	signature:()
 net::Transport	datatransport.h	/^class Transport{$/;"	c	namespace:net
 net::Transport::Transport	datatransport.cpp	/^Transport::Transport()$/;"	f	class:net::Transport	signature:()
 net::Transport::Transport	datatransport.h	/^		Transport();$/;"	p	class:net::Transport	access:private	signature:()
 net::Transport::Transport	datatransport.h	/^		Transport(const Transport &T);$/;"	p	class:net::Transport	access:private	signature:(const Transport &T)
-net::Transport::errThread	datatransport.h	/^		TaskQueueThread *errThread;$/;"	m	class:net::Transport	access:private
+net::Transport::_commondQueue	datatransport.h	/^		CommondQueue *_commondQueue;$/;"	m	class:net::Transport	access:private
+net::Transport::_defaultstream	datatransport.h	/^		DataStream *_defaultstream;$/;"	m	class:net::Transport	access:private
+net::Transport::_errThread	datatransport.h	/^		TaskQueueThread *_errThread;$/;"	m	class:net::Transport	access:private
+net::Transport::_readQueue	datatransport.h	/^		PacketQueue *_readQueue;$/;"	m	class:net::Transport	access:private
+net::Transport::_readwriteThread	datatransport.h	/^		TaskQueueThread *_readwriteThread;$/;"	m	class:net::Transport	access:private
+net::Transport::_stream	datatransport.h	/^		DataStream *_stream = NULL;$/;"	m	class:net::Transport	access:private
+net::Transport::_writeQueue	datatransport.h	/^		PacketQueue *_writeQueue;$/;"	m	class:net::Transport	access:private
+net::Transport::getCommondQueue	datatransport.h	/^		CommondQueue *getCommondQueue(){$/;"	f	class:net::Transport	access:public	signature:()
 net::Transport::getErrThread	datatransport.h	/^		TaskQueueThread *getErrThread(){$/;"	f	class:net::Transport	access:public	signature:()
-net::Transport::getReadCommondQueue	datatransport.h	/^		CommondQueue *getReadCommondQueue(){$/;"	f	class:net::Transport	access:public	signature:()
 net::Transport::getReadPacketQueue	datatransport.h	/^		PacketQueue *getReadPacketQueue(){$/;"	f	class:net::Transport	access:public	signature:()
-net::Transport::getReadThread	datatransport.h	/^		TaskQueueThread *getReadThread(){$/;"	f	class:net::Transport	access:public	signature:()
-net::Transport::getWriteCommondQueue	datatransport.h	/^		CommondQueue *getWriteCommondQueue(){$/;"	f	class:net::Transport	access:public	signature:()
+net::Transport::getStream	datatransport.h	/^		DataStream *getStream(){$/;"	f	class:net::Transport	access:public	signature:()
+net::Transport::getThread	datatransport.h	/^		TaskQueueThread *getThread(){$/;"	f	class:net::Transport	access:public	signature:()
 net::Transport::getWritePacketQueue	datatransport.h	/^		PacketQueue *getWritePacketQueue(){$/;"	f	class:net::Transport	access:public	signature:()
-net::Transport::getWriteThread	datatransport.h	/^		TaskQueueThread *getWriteThread(){$/;"	f	class:net::Transport	access:public	signature:()
 net::Transport::instance	datatransport.h	/^		static Transport& instance(){$/;"	f	class:net::Transport	access:public	signature:()
 net::Transport::operator =	datatransport.h	/^		Transport& operator=(const Transport &T);$/;"	p	class:net::Transport	access:private	signature:(const Transport &T)
-net::Transport::readCommondQueue	datatransport.h	/^		CommondQueue *readCommondQueue;$/;"	m	class:net::Transport	access:private
-net::Transport::readQueue	datatransport.h	/^		PacketQueue *readQueue;$/;"	m	class:net::Transport	access:private
-net::Transport::readThread	datatransport.h	/^		TaskQueueThread *readThread;$/;"	m	class:net::Transport	access:private
 net::Transport::self	datatransport.h	/^		static Transport *self;$/;"	m	class:net::Transport	access:private
+net::Transport::setStream	datatransport.h	/^		void setStream(DataStream *stream)$/;"	f	class:net::Transport	access:public	signature:(DataStream *stream)
 net::Transport::start	datatransport.cpp	/^void Transport::start()$/;"	f	class:net::Transport	signature:()
 net::Transport::start	datatransport.h	/^		void start();$/;"	p	class:net::Transport	access:public	signature:()
-net::Transport::writeCommondQueue	datatransport.h	/^		CommondQueue *writeCommondQueue;$/;"	m	class:net::Transport	access:private
-net::Transport::writeQueue	datatransport.h	/^		PacketQueue *writeQueue;$/;"	m	class:net::Transport	access:private
-net::Transport::writeThread	datatransport.h	/^		TaskQueueThread *writeThread;$/;"	m	class:net::Transport	access:private
 net::Transport::~Transport	datatransport.cpp	/^Transport::~Transport()$/;"	f	class:net::Transport	signature:()
 net::Transport::~Transport	datatransport.h	/^		virtual ~Transport();$/;"	p	class:net::Transport	access:public	signature:()
 next	listensocketevent.h	/^		ListenEvent *next;$/;"	m	class:net::ListenEvent	access:private
-next	tcpsocketevent.h	/^		TcpSocketEvent *next = NULL;$/;"	m	class:net::TcpSocketEvent	access:private
 onCommond	netevent.cpp	/^void NetReadCommond::onCommond()$/;"	f	class:net::NetReadCommond	signature:()
 onCommond	netevent.cpp	/^void NetWriteCommond::onCommond()$/;"	f	class:net::NetWriteCommond	signature:()
 onCommond	netevent.h	/^		virtual void onCommond();$/;"	p	class:net::NetReadCommond	access:public	signature:()
@@ -576,32 +535,20 @@ operator =	listensocketevent.h	/^		ListenEventQueue& operator=(const ListenEvent
 operator =	neteventdriver.h	/^		NetEventDriver& operator=(const NetEventDriver &T);$/;"	p	class:net::NetEventDriver	access:private	signature:(const NetEventDriver &T)
 operator =	serversocket.h	/^		ServerSocket&  operator=(const ServerSocket &T);$/;"	p	class:net::ServerSocket	access:private	signature:(const ServerSocket &T)
 operator =	tcpsocketevent.h	/^		TcpSocketEvent& operator=(const TcpSocketEvent &T);$/;"	p	class:net::TcpSocketEvent	access:private	signature:(const TcpSocketEvent &T)
-operator =	tcpsocketevent.h	/^		TcpSocketQueue& operator=(const TcpSocketQueue &T);$/;"	p	class:net::TcpSocketQueue	access:private	signature:(const TcpSocketQueue &T)
-operator delete	main.cpp	/^		void operator delete (void *p, size_t size)$/;"	f	class:packet	access:public	signature:(void *p, size_t size)
-operator new	main.cpp	/^		void* operator new (size_t size)$/;"	f	class:packet	access:public	signature:(size_t size)
-packet	main.cpp	/^class packet{$/;"	c	file:
-packet::mempool	main.cpp	/^		static Mempool<packet> *mempool;$/;"	m	class:packet	file:	access:public
-packet::mempool	main.cpp	/^Mempool<packet> *packet::mempool = NULL;$/;"	m	class:packet	file:
-packet::operator delete	main.cpp	/^		void operator delete (void *p, size_t size)$/;"	f	class:packet	access:public	signature:(void *p, size_t size)
-packet::operator new	main.cpp	/^		void* operator new (size_t size)$/;"	f	class:packet	access:public	signature:(size_t size)
 pinstance	connectionmanager.cpp	/^ConnectionManager* ConnectionManager::pinstance()$/;"	f	class:net::ConnectionManager	signature:()
 pinstance	connectionmanager.h	/^		static ConnectionManager* pinstance();$/;"	p	class:net::ConnectionManager	access:public	signature:()
 prepare	connection.cpp	/^void Connection::prepare(DataStream *ss)$/;"	f	class:net::Connection	signature:(DataStream *ss)
-prepare	connection.h	/^		void prepare(PacketQueue *in, PacketQueue *out);$/;"	p	class:net::Connection	access:public	signature:(PacketQueue *in, PacketQueue *out)
+prepare	connection.h	/^		void prepare(DataStream *ss);$/;"	p	class:net::Connection	access:public	signature:(DataStream *ss)
 read	socket.cpp	/^int Socket::read(char* buf, int count)$/;"	f	class:net::Socket	signature:(char* buf, int count)
 read	socket.h	/^		int read(char* buf, int count);$/;"	p	class:net::Socket	access:public	signature:(char* buf, int count)
-readCommondQueue	datatransport.h	/^		CommondQueue *readCommondQueue;$/;"	m	class:net::Transport	access:private
 readData	connection.cpp	/^void Connection::readData()$/;"	f	class:net::Connection	signature:()
 readData	connection.h	/^		void readData();$/;"	p	class:net::Connection	access:public	signature:()
-readQueue	datatransport.h	/^		PacketQueue *readQueue;$/;"	m	class:net::Transport	access:private
-readThread	datatransport.h	/^		TaskQueueThread *readThread;$/;"	m	class:net::Transport	access:private
 remote_address	clientsocket.h	/^		struct sockaddr_in  remote_address;		$/;"	m	class:net::ClientSocket	typeref:struct:net::ClientSocket::sockaddr_in	access:protected
 remote_port	clientsocket.h	/^		int remote_port;$/;"	m	class:net::ClientSocket	access:protected
 removeCon	connectionmanager.cpp	/^void ConnectionManager::removeCon(Connection *con)$/;"	f	class:net::ConnectionManager	signature:(Connection *con)
 removeCon	connectionmanager.h	/^		void removeCon(Connection *con);$/;"	p	class:net::ConnectionManager	access:public	signature:(Connection *con)
 removeConByKey	connectionmanager.cpp	/^void ConnectionManager::removeConByKey(int fd)$/;"	f	class:net::ConnectionManager	signature:(int fd)
 removeConByKey	connectionmanager.h	/^		void removeConByKey(int fd);$/;"	p	class:net::ConnectionManager	access:public	signature:(int fd)
-run	main.cpp	/^	void run()$/;"	f	class:mythread	file:	access:private	signature:()
 self	connectionmanager.cpp	/^ConnectionManager* ConnectionManager::self=NULL;$/;"	m	class:net::ConnectionManager	file:
 self	connectionmanager.h	/^		static ConnectionManager *self;$/;"	m	class:net::ConnectionManager	access:private
 self	datatransport.h	/^		static Transport *self;$/;"	m	class:net::Transport	access:private
@@ -609,34 +556,30 @@ self	listensocketevent.cpp	/^ListenEventQueue ListenEventQueue::self;$/;"	m	clas
 self	listensocketevent.h	/^		static ListenEventQueue self;$/;"	m	class:net::ListenEventQueue	access:private
 self	neteventdriver.cpp	/^NetEventDriver NetEventDriver::self;$/;"	m	class:net::NetEventDriver	file:
 self	neteventdriver.h	/^		static NetEventDriver self;$/;"	m	class:net::NetEventDriver	access:private
-self	tcpsocketevent.cpp	/^TcpSocketQueue TcpSocketQueue::self;$/;"	m	class:net::TcpSocketQueue	file:
-self	tcpsocketevent.h	/^		static TcpSocketQueue self;$/;"	m	class:net::TcpSocketQueue	access:private
 setAddress	connection.cpp	/^void Connection::setAddress(sockaddr *addr, size_t addrlen)$/;"	f	class:net::Connection	signature:(sockaddr *addr, size_t addrlen)
 setAddress	connection.h	/^		void setAddress(sockaddr *addr, size_t addrlen);		$/;"	p	class:net::Connection	access:public	signature:(sockaddr *addr, size_t addrlen)
 setBlock	socket.cpp	/^int Socket::setBlock()$/;"	f	class:net::Socket	signature:()
 setBlock	socket.h	/^		int setBlock();	$/;"	p	class:net::Socket	access:public	signature:()
-setByCommon	packet.cpp	/^	void Packet::setByCommon(char *addr, size_t size)$/;"	f	class:net::Packet	signature:(char *addr, size_t size)
-setByCommon	packet.h	/^			void setByCommon( char *addr, size_t size);$/;"	p	class:net::Packet	access:public	signature:( char *addr, size_t size)
+setConnection	Ipacket.h	/^		void setConnection(const Connection *con){$/;"	f	class:net::IPacket	access:public	signature:(const Connection *con)
+setConnection	netevent.h	/^		void setConnection(Connection *con){$/;"	f	class:net::NetReadCommond	access:public	signature:(Connection *con)
 setErr	connection.h	/^		void setErr(bool t){$/;"	f	class:net::Connection	access:public	signature:(bool t)
 setNeedClose	connection.h	/^		void setNeedClose(bool t){$/;"	f	class:net::Connection	access:public	signature:(bool t)
 setNext	listensocketevent.h	/^		void setNext(ListenEvent *n){$/;"	f	class:net::ListenEvent	access:public	signature:(ListenEvent *n)
-setNext	packet.h	/^			void setNext(Packet *n){_next = n;}	$/;"	f	class:net::Packet	access:public	signature:(Packet *n)
-setNext	tcpsocketevent.h	/^		void setNext(TcpSocketEvent *T){$/;"	f	class:net::TcpSocketEvent	access:public	signature:(TcpSocketEvent *T)
 setNoDelay	socket.cpp	/^int Socket::setNoDelay(int val)$/;"	f	class:net::Socket	signature:(int val)
 setNoDelay	socket.h	/^		int setNoDelay(int val);$/;"	p	class:net::Socket	access:private	signature:(int val)
 setNonBlock	socket.cpp	/^int Socket::setNonBlock()$/;"	f	class:net::Socket	signature:()
 setNonBlock	socket.h	/^		int setNonBlock();$/;"	p	class:net::Socket	access:public	signature:()
+setPacket	netevent.h	/^		void setPacket(IPacket *p){$/;"	f	class:net::NetWriteCommond	access:public	signature:(IPacket *p)
 setReadable	connection.h	/^		void setReadable(){$/;"	f	class:net::Connection	access:public	signature:()
 setReuse	socket.cpp	/^int Socket::setReuse()$/;"	f	class:net::Socket	signature:()
 setReuse	socket.h	/^		int setReuse();$/;"	p	class:net::Socket	access:public	signature:()
 setSendBuffer	socket.cpp	/^bool Socket::setSendBuffer(int bufsize)$/;"	f	class:net::Socket	signature:(int bufsize)
 setSendBuffer	socket.h	/^		bool setSendBuffer(int bufsize);$/;"	p	class:net::Socket	access:public	signature:(int bufsize)
 setSocketHandle	socket.h	/^		void setSocketHandle(int fd){sock_fd = fd;}$/;"	f	class:net::Socket	access:public	signature:(int fd)
+setStream	datatransport.h	/^		void setStream(DataStream *stream)$/;"	f	class:net::Transport	access:public	signature:(DataStream *stream)
 setWriteable	connection.h	/^		void setWriteable(bool t){$/;"	f	class:net::Connection	access:public	signature:(bool t)
 shutdown	connection.cpp	/^void Connection::shutdown()$/;"	f	class:net::Connection	signature:()
 shutdown	connection.h	/^		void shutdown();$/;"	p	class:net::Connection	access:public	signature:()
-size	packetqueue.cpp	/^size_t PacketQueue::size()$/;"	f	class:net::PacketQueue	signature:()
-size	packetqueue.h	/^		size_t size();$/;"	p	class:net::PacketQueue	access:public	signature:()
 sock_fd	socket.h	/^		int sock_fd;$/;"	m	class:net::Socket	access:protected
 socketListen	serversocket.cpp	/^bool ServerSocket::socketListen(struct sockaddr *sa, socklen_t len, int backlog)$/;"	f	class:net::ServerSocket	signature:(struct sockaddr *sa, socklen_t len, int backlog)
 socketListen	serversocket.h	/^		bool socketListen(struct sockaddr *sa, socklen_t len, int backlog);$/;"	p	class:net::ServerSocket	access:private	signature:(struct sockaddr *sa, socklen_t len, int backlog)
@@ -644,12 +587,8 @@ start	datatransport.cpp	/^void Transport::start()$/;"	f	class:net::Transport	sig
 start	datatransport.h	/^		void start();$/;"	p	class:net::Transport	access:public	signature:()
 write	socket.cpp	/^int Socket::write(const char* buf, int count)$/;"	f	class:net::Socket	signature:(const char* buf, int count)
 write	socket.h	/^		int write(const char* buf, int count);$/;"	p	class:net::Socket	access:public	signature:(const char* buf, int count)
-writeCommondQueue	datatransport.h	/^		CommondQueue *writeCommondQueue;$/;"	m	class:net::Transport	access:private
 writeData	connection.cpp	/^void Connection::writeData()$/;"	f	class:net::Connection	signature:()
 writeData	connection.h	/^		void writeData();$/;"	p	class:net::Connection	access:public	signature:()
-writeFromPacket	datastream.cpp	/^bool DataStream::writeFromPacket(PacketQueue* queue)$/;"	f	class:net::DataStream	signature:(PacketQueue* queue)
-writeQueue	datatransport.h	/^		PacketQueue *writeQueue;$/;"	m	class:net::Transport	access:private
-writeThread	datatransport.h	/^		TaskQueueThread *writeThread;$/;"	m	class:net::Transport	access:private
 ~ClientSocket	clientsocket.cpp	/^ClientSocket::~ClientSocket()$/;"	f	class:net::ClientSocket	signature:()
 ~ClientSocket	clientsocket.h	/^		~ClientSocket();$/;"	p	class:net::ClientSocket	access:public	signature:()
 ~ConnectedSocket	socket.h	/^		~ConnectedSocket(){::close(sock_fd);}$/;"	f	class:net::ConnectedSocket	access:public	signature:()
@@ -658,9 +597,11 @@ writeThread	datatransport.h	/^		TaskQueueThread *writeThread;$/;"	m	class:net::T
 ~ConnectionManager	connectionmanager.cpp	/^ConnectionManager::~ConnectionManager()$/;"	f	class:net::ConnectionManager	signature:()
 ~ConnectionManager	connectionmanager.h	/^		~ConnectionManager();$/;"	p	class:net::ConnectionManager	access:private	signature:()
 ~DataStream	datastream.cpp	/^DataStream::~DataStream()$/;"	f	class:net::DataStream	signature:()
-~DataStream	datastream.h	/^			virtual ~DataStream();$/;"	p	class:net::DataStream	access:public	signature:()
-~Factory	factory.h	/^		~Factory(){};$/;"	f	class:Factory	access:public	signature:()
+~DataStream	datastream.h	/^		virtual ~DataStream();$/;"	p	class:net::DataStream	access:public	signature:()
+~EchoFactory	factory.h	/^		~EchoFactory(){};$/;"	f	class:EchoFactory	access:public	signature:()
 ~IFactory	factory.h	/^		virtual ~IFactory(){};$/;"	f	class:IFactory	access:public	signature:()
+~IPacket	Ipacket.cpp	/^IPacket::~IPacket()$/;"	f	class:net::IPacket	signature:()
+~IPacket	Ipacket.h	/^		virtual ~IPacket();$/;"	p	class:net::IPacket	access:public	signature:()
 ~ListenEvent	listensocketevent.cpp	/^ListenEvent::~ListenEvent()$/;"	f	class:net::ListenEvent	signature:()
 ~ListenEvent	listensocketevent.h	/^		~ListenEvent();$/;"	p	class:net::ListenEvent	access:public	signature:()
 ~ListenEventQueue	listensocketevent.cpp	/^ListenEventQueue::~ListenEventQueue()$/;"	f	class:net::ListenEventQueue	signature:()
@@ -671,17 +612,13 @@ writeThread	datatransport.h	/^		TaskQueueThread *writeThread;$/;"	m	class:net::T
 ~NetReadCommond	netevent.h	/^		~NetReadCommond();$/;"	p	class:net::NetReadCommond	access:public	signature:()
 ~NetWriteCommond	netevent.cpp	/^NetWriteCommond::~NetWriteCommond()$/;"	f	class:net::NetWriteCommond	signature:()
 ~NetWriteCommond	netevent.h	/^		~NetWriteCommond();$/;"	p	class:net::NetWriteCommond	access:public	signature:()
-~Packet	packet.cpp	/^	Packet::~Packet()$/;"	f	class:net::Packet	signature:()
-~Packet	packet.h	/^			virtual ~Packet();$/;"	p	class:net::Packet	access:public	signature:()
-~PacketQueue	packetqueue.cpp	/^PacketQueue::~PacketQueue()$/;"	f	class:net::PacketQueue	signature:()
-~PacketQueue	packetqueue.h	/^		~PacketQueue();$/;"	p	class:net::PacketQueue	access:public	signature:()
+~NormalPacket	Ipacket.h	/^		virtual ~NormalPacket(){$/;"	f	class:net::NormalPacket	access:public	signature:()
+~ServerHandler	serverhandler.h	/^		virtual ~ServerHandler(){$/;"	f	class:net::ServerHandler	access:public	signature:()
 ~ServerSocket	serversocket.cpp	/^ServerSocket::~ServerSocket()$/;"	f	class:net::ServerSocket	signature:()
 ~ServerSocket	serversocket.h	/^		~ServerSocket();$/;"	p	class:net::ServerSocket	access:public	signature:()
 ~Socket	socket.cpp	/^Socket::~Socket()$/;"	f	class:net::Socket	signature:()
 ~Socket	socket.h	/^		virtual ~Socket();$/;"	p	class:net::Socket	access:public	signature:()
 ~TcpSocketEvent	tcpsocketevent.cpp	/^TcpSocketEvent::~TcpSocketEvent()$/;"	f	class:net::TcpSocketEvent	signature:()
 ~TcpSocketEvent	tcpsocketevent.h	/^		~TcpSocketEvent();$/;"	p	class:net::TcpSocketEvent	access:public	signature:()
-~TcpSocketQueue	tcpsocketevent.cpp	/^TcpSocketQueue::~TcpSocketQueue()$/;"	f	class:net::TcpSocketQueue	signature:()
-~TcpSocketQueue	tcpsocketevent.h	/^		~TcpSocketQueue();$/;"	p	class:net::TcpSocketQueue	access:public	signature:()
 ~Transport	datatransport.cpp	/^Transport::~Transport()$/;"	f	class:net::Transport	signature:()
 ~Transport	datatransport.h	/^		virtual ~Transport();$/;"	p	class:net::Transport	access:public	signature:()

@@ -1,5 +1,7 @@
 auto_mutex.o: auto_mutex.cpp auto_mutex.h lock.h
 commond.o: commond.cpp commond.h
+commondthread.o: commondthread.cpp commondthread.h queue.h auto_mutex.h \
+ lock.h object.h commond.h thread.h runnable.h
 event_driver.o: event_driver.cpp event_driver.h thread.h runnable.h
 lock.o: lock.cpp lock.h
 logger.o: logger.cpp logger.h lock.h thread.h runnable.h queue.h \
@@ -12,6 +14,4 @@ membuffer.o: membuffer.cpp membuffer.h
 object.o: object.cpp object.h
 refcount.o: refcount.cpp refcount.h atomic.h
 status.o: status.cpp status.h auto_mutex.h lock.h
-taskqueuethread.o: taskqueuethread.cpp taskqueuethread.h queue.h \
- auto_mutex.h lock.h object.h commond.h thread.h runnable.h
 thread.o: thread.cpp thread.h runnable.h
