@@ -3,10 +3,10 @@
 #include <pthread.h>
 #include <vector>
 #include "runnable.h"
-
+#include "queue.h"
 namespace sys{
 
-class Thread : public Runnable{
+class Thread{
 	public:
 		Thread();
 		virtual ~Thread();
@@ -42,6 +42,29 @@ class Thread : public Runnable{
 		pthread_t _tid=0;
 
 };
+
+class ThreadExecuter : public Thread
+{
+	typedef BlockQueue<Runnable> ExecuterQueue;
+	public:
+		ThreadExecuter();
+		~ThreadExecuter();
+		
+		
+		void pushExecuter(Runnable *task);
+		int getLoad();
+	protected:
+		virtual void run();
+		
+		void clear();
+	private:
+		ExecuterQueue _queue;
+
+};
+
+
+
+
 using std::vector;
 class ThreadManager
 {

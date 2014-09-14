@@ -44,8 +44,14 @@ void* Thread::thread_func(void *this_)
 		tmp->finish();
 	}
 }
+/////////////////////////////////////////////
+ThreadExecuter::ThreadExecuter(Runnable *run)
+{
+	_runner = run;
+}
 
-//class 
+
+/////////////////////////////////////////////class 
 ThreadManager ThreadManager::self;
 
 void ThreadManager::add(Thread *T)
